@@ -1,9 +1,18 @@
 import './App.css';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Members from './pages/members';
+
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <main className="App">
+      <Router>
+        <Routes>
+          <Route path='/' element={<Members />}></Route>
+        </Routes>
+      </Router>
+    </main>
   )
 }
 

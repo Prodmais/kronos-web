@@ -1,0 +1,12 @@
+.members-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+    height: min-content;
+
+    gap: 20px;
+
+    border: 1px solid #ff0000;
+
+}
