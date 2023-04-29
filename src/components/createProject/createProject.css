@@ -1,0 +1,131 @@
+
+body {
+    background: #85B0B0;
+}
+.div-perfil{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.perfil-do-usuario{
+    background: #EEEEEE;
+    border: 1px solid #CAC4C4;
+    border-radius: 7px;
+    width: 8rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.div-principal-criar-projeto{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.titulo-principal-criar-projeto{
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.51);
+    padding: 1%;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 6px;
+    width: 19rem;
+}
+.titulo-quadro-projetos{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+.form-criar-projeto {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+}
+
+/* Estilos para telas menores que 767px */
+@media (max-width: 767px) {
+    .form-criar-projeto {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .form-criar-projeto-col-01 {
+        width: 100% !important;
+    }
+
+    .form-criar-projeto-col-02 {
+        width: 100% !important;
+    }
+}
+
+.form-titulo-do-projeto {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-criar-projeto-col-01 {
+    display: flex;
+    flex-direction: column;
+    width: 559px;
+    background: rgba(255, 255, 255, 0.51);
+    box-shadow: 0px 0px 23px #E9E8FC;
+    padding: 1%;
+}
+
+.form-criar-projeto-col-02 {
+    display: flex;
+    flex-direction: column;
+    width: 559px;
+    background: rgba(255, 255, 255, 0.51);
+    box-shadow: 0px 0px 23px #E9E8FC;
+    padding: 1%;
+}
+
+.form-input-name {
+    width: 14rem;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.form-name-projeto {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.form-input-descricao {
+    height: 191.65px;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.form-opcoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.pg-buttom-projeto {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.input-form-name-projeto {
+    background-color: blackred;
+}
+
+.form-input-do-projeto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
