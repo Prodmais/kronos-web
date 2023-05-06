@@ -1,0 +1,148 @@
+
+body {
+    background: #85B0B0;
+}
+
+.create_project_section {
+
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_criar_projeto {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    margin: 2%;
+}
+
+.div_perfil {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.perfil_do_usuario {
+    background: #EEEEEE;
+    border: 1px solid #CAC4C4;
+    border-radius: 7px;
+    /* width: 8rem; */
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.div_principal_criar_projeto {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
+
+.titulo_principal_criar_projeto {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.51);
+    padding: 1%;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 6px;
+    /* width: 19rem; */
+}
+
+.titulo_quadro_projetos {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.form_titulo_do_projeto {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_criar_projeto_col_01 {
+    display: flex;
+    flex-direction: column;
+    max-width: 559px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.51);
+    box-shadow: 0px 0px 23px #E9E8FC;
+    padding: 1%;
+}
+
+.form_criar_projeto_col_02 {
+    display: flex;
+    flex-direction: column;
+    max-width: 559px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.51);
+    box-shadow: 0px 0px 23px #E9E8FC;
+    padding: 1%;
+}
+
+.form_input_name {
+    /* width: 14rem; */
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.form_name_projeto {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.form_input_descricao {
+    height: 191.65px;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.form_opcoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.pg_buttom_projeto {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.input_form_name_projeto {
+    background-color: blackred;
+}
+
+.form_input_do_projeto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Estilos para telas menores que 767px */
+@media (max-width: 767px) {
+    .form_criar_projeto {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .form_criar_projeto_col_01 {
+        width: 100% !important;
+    }
+
+    .form_criar_projeto_col_02 {
+        width: 100% !important;
+    }
+}

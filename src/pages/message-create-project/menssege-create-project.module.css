@@ -1,0 +1,128 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.message_section {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+
+    padding: 0 20px;
+}
+
+.message_container {
+
+    display: flex;
+
+    max-width: 550px;
+    width: 100%;
+}
+
+.image_project_container {
+    max-width: 350px;
+}
+
+
+.image_project_container img {
+    width: 100%;
+}
+
+.conteudo_mensagem_projeto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    background: #002D2B;
+    border-radius: 16px;
+    
+    padding: 16px 21px 16px;
+
+    width: 100%;
+
+    margin-top: 60px;
+
+}
+
+.botao_mensagem {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.botao_criar_projeto:hover{
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+.botao_criar_projeto {
+    flex-grow: 1;
+    padding: 6px 16px;
+    gap: 10px;
+    background: #85B0B0;
+    border: none;
+    border-radius: 8px;
+    height: 42px;
+    color: #002D2B;
+    width: 13rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.botao_criar_projeto_depois {
+    flex-grow: 1;
+    padding: 6px 16px;
+    gap: 10px;
+    background: #002D2B;
+    border-radius: 8px;
+    height: 42px;
+    color:#85B0B0;
+    border: 1px solid #85B0B0;
+    width: 13rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botao_criar_projeto_depois:hover{
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+/* Estilos para telas menores que 767px */
+/* @media (max-width: 767px) {
+    .botao_criar_projeto{
+        margin-right: 0rem;
+        margin-bottom: 3%;
+    }
+} */
+
+@media (max-width: 516px) {
+    .botao_mensagem {
+        flex-wrap: wrap;
+    }
+}
+
+
+.titulo_mensagem{
+    font-size: 19px;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+    padding: 1rem;
+}
+
+.paragraph_mensagem_projeto{
+    margin: 0;
+}
