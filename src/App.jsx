@@ -5,6 +5,7 @@ import './App.css';
 
 import Boards from './pages/boards';
 import CreateProject from './pages/create-project';
+import CreateUser from './pages/create-user';
 import Login from './pages/login';
 import Main from './pages/main';
 import Members from './pages/members';
@@ -17,7 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='auth' element={ <Login /> }></Route>
-
+          <Route path='signup' element={ <CreateUser /> }></Route>
           <Route path='/' element={<AuthGuardRoute />}>
             <Route path='' element={<Main />}>
                 <Route path='' element={<Navigate to='boards' />} />
