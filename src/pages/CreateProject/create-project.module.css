@@ -7,6 +7,7 @@ body {
 
     display: flex;
     width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -29,7 +30,6 @@ body {
     background: #EEEEEE;
     border: 1px solid #CAC4C4;
     border-radius: 7px;
-    /* width: 8rem; */
     height: 40px;
     display: flex;
     align-items: center;
@@ -49,7 +49,6 @@ body {
     color: #FFFFFF;
     font-size: 20px;
     border-radius: 6px;
-    /* width: 19rem; */
 }
 
 .titulo_quadro_projetos {
@@ -90,7 +89,6 @@ body {
 }
 
 .form_input_name {
-    /* width: 14rem; */
     background: #FFFFFF;
     border-radius: 4px;
 }

@@ -1,0 +1,48 @@
+.no_projects_container {
+
+    font-family: 'Open Sans', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+
+.image_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image_container img {
+
+    padding: 20px;
+
+    max-width: 300px;
+    width: 100%;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.image_container p {
+
+    padding: 20px;
+
+    max-width: 500px;
+    width: 100%;
+
+}
+
+.image_container p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.2em;
+
+    text-align: center;
+    color: #FFF;
+}

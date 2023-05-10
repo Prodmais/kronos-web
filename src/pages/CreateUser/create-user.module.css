@@ -1,0 +1,23 @@
+.background_signup {
+    width: 100%;
+    background-color: var(--login-bg-color);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background_signup form {
+    background-color: #85B0B0;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    padding: 8px 16px;
+}
+
+.signup_form_title {
+    font-size: 1rem;
+    color: white;
+}

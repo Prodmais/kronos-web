@@ -1,0 +1,67 @@
+.menu_aside {
+    background-color: #002D2B;
+    height: 100%;
+    width: min-content;
+}
+
+.menu_aside ul {
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    gap: 20px;
+
+    padding: 10px 0;
+
+    width: 80px;
+    height: 100%;
+    overflow-x: hidden;
+
+    transition: all 0.2s ease-in-out;
+
+}
+
+.menu_aside ul:hover {
+    width: 180px;
+}
+
+.menu_aside ul:hover li button {
+    min-width: auto;
+    width: 100%;
+}
+
+
+.menu_aside ul li {
+    width: 100%;
+}
+
+.menu_aside ul li button {
+
+    display: flex;
+    align-items: center;
+    
+    
+    gap: 30px;
+    min-width: 160px;
+    padding-left: 25px;
+
+    font-family: 'Inter';
+
+    width: 100%;
+
+    color: #FFF;
+    border: none;
+    background-color: transparent;
+
+    cursor: pointer;
+
+}
+
+.menu_aside ul li button svg {
+    font-size: 2em;
+
+}

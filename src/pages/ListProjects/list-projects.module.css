@@ -1,0 +1,111 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 25px;
+
+    width: 100%;
+    height: 60px;
+
+}
+
+header h1 { 
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+
+    font-size: 1.2em;
+    margin-left: 56px;
+
+}
+
+header .new_project_button {
+    border: none;
+}
+
+.list_container * {
+    font-family: 'Roboto', sans-serif;
+}
+
+.list_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+
+}
+
+.list_container ul {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+
+    padding: 40px;
+
+    list-style: none;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* border: 1px solid red; */
+
+}
+
+.list_container ul .card_list  {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 6px;
+    background-color: #FFF;
+    min-height: 150px;
+
+    transition: all 0.2s ease-in-out;
+
+    /* border: 1px solid red; */
+}
+
+/* #4F4F4F  */
+
+.list_container ul .card_list button {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 6px;
+    background-color: #FFF;
+    padding: 10px 15px;
+
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+
+}
+
+.list_container ul .card_list:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.list_container ul  .card_list button .informations p {
+    width: 100%;
+    color: #4F4F4F;
+
+}
+
+.list_container ul  .card_list button .last_update {
+
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 10px;
+    width: 100%;
+
+    color: #828282;
+
+    border-top: 1px solid #E0E0E0;
+}
