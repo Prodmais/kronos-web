@@ -6,6 +6,7 @@
 
 .login_section {
   width: 100vw;
+  height: 100%;
   background-color: var(--login-bg-color);
 }
 
