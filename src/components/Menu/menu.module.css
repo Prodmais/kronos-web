@@ -25,18 +25,14 @@
 
 }
 
-.menu_aside ul:hover {
+.menu_aside ul.open_menu {
     width: 180px;
-}
-
-.menu_aside ul:hover li button {
-    min-width: auto;
-    width: 100%;
 }
 
 
 .menu_aside ul li {
     width: 100%;
+    overflow: hidden;
 }
 
 .menu_aside ul li button {
@@ -44,24 +40,35 @@
     display: flex;
     align-items: center;
     
+    overflow: hidden;
     
     gap: 30px;
-    min-width: 160px;
-    padding-left: 25px;
+    min-width: 180px;
+
+    padding: 10px 0 10px 25px;
 
     font-family: 'Inter';
 
-    width: 100%;
 
     color: #FFF;
     border: none;
     background-color: transparent;
 
+    transition: all 0.2s ease-in-out;
+
     cursor: pointer;
 
+}
+
+.menu_aside ul li button:hover {
+    background-color: #061a19;
 }
 
 .menu_aside ul li button svg {
     font-size: 2em;
 
+}
+
+.flip_x_1 {
+    transform: scale(-1);
 }
