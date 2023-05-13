@@ -9,15 +9,97 @@
 
 .background_signup form {
     background-color: #85B0B0;
-    width: 100%;
+    width: 400%;
     max-width: 400px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
-    padding: 8px 16px;
+    padding: 8px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .signup_form_title {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.background_signup_container{
+    width: 100%;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.background_signup_icon {
+    margin: 8px;
+}
+
+.background_signup_input {
+    background-color: white;
+    position: static;
+    color: black;
+    padding: 8px;
+}
+
+.background_signup_input::placeholder{
+    color: black;
+}
+
+.background_signup_label {
+    color: white;
+    align-self: flex-start;
+    margin: 0px;
+    font-size: 1.1rem;
+}
+
+.background_signup_label:last-child{
+    margin-top: 16px;
+}
+
+.background_signup_group_radio {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.background_signup_container_radio{
+    width: 32%;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    border-radius: 4px;
+    justify-content: space-between;
+    padding: 0px 8px;
+}
+
+.background_signup_label_radio {
+    color: black;
+    margin: 0px;
+}
+
+.background_signup_radio {
+    width: 20px;
+    accent-color: black;
+    background-color: white;
+    position: static;
+}
+
+.background_signup_span {
+    font-size: .8rem;
+    text-align: justify;
+    margin-bottom: 8px;
+}
+
+.background_signup_span_link {
+    color: white;
+}
+
+.background_signup_span_link:active{
     color: white;
 }

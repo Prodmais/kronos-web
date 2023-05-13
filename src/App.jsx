@@ -11,6 +11,7 @@ import Members from './pages/Members';
 import MessageCreateProject from './pages/MessageCreateProject';
 import AuthGuardRoute from './guard/auth-guard';
 import ListProjects from './pages/ListProjects';
+import CreateUser from './pages/CreateUser';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='auth' element={ <Login /> } />
-
+          <Route path='signup' element={<CreateUser/>}/>
           <Route path='' element={<AuthGuardRoute />}>
             <Route path='' element={<Main />}>
                 <Route path='projetos'>
