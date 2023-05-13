@@ -3,17 +3,24 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import DescriptionIcon from '@mui/icons-material/Description';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
+import { useState } from 'react';
 
 const Menu = ({ id }) => {
+
+    const [toggleMenu, setToggleMenu] = useState(true);
+
+    function handleToggleMenu() {
+        setToggleMenu(!toggleMenu);
+    }
 
     // console.log(id);
 
     return (
         <aside className={styles.menu_aside}>
-            <ul>
+            <ul className={ toggleMenu ? styles.open_menu : '' } >
 
                 <li>
-                    <button>
+                    <button className={ toggleMenu ? styles.flip_x_1 : '' } onClick={handleToggleMenu}>
                         <KeyboardDoubleArrowRightIcon />
                     </button>
                 </li>
