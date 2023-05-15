@@ -1,0 +1,39 @@
+.navbar {
+
+    display: flex;
+    justify-content: flex-end;
+
+    padding: 10px 20px;
+
+    width: 100%;
+    min-height: 80px;
+
+    background-color: transparent;
+}
+
+.navbar button {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border-radius: 8px;
+    border: 1px solid #DEDEDE;
+    outline-color: var(--primary-color);
+    min-width: 150px;
+    
+    height: 40px;
+
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    background-color: #DEDEDE;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1.5px;
+}
+
+
+.navbar button .avatar_container {
+    display: flex;
+}

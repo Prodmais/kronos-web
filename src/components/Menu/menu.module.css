@@ -1,21 +1,23 @@
 .menu_aside {
     background-color: #002D2B;
     height: 100%;
-    width: min-content;
+    width: max-content;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 .menu_aside ul {
 
-    list-style: none;
+    position: relative;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
+    list-style: none;
 
     gap: 20px;
 
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 35px;
 
     width: 80px;
     height: 100%;
@@ -23,6 +25,18 @@
 
     transition: all 0.2s ease-in-out;
 
+}
+
+.menu_aside ul::-webkit-scrollbar {
+    width: 5px;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.menu_aside ul::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: #AAAA;
+    border-radius: 10px;
 }
 
 .menu_aside ul.open_menu {
@@ -35,7 +49,8 @@
     overflow: hidden;
 }
 
-.menu_aside ul li button {
+.menu_aside ul li button,
+.logo_cronos button {
 
     display: flex;
     align-items: center;
@@ -60,7 +75,8 @@
 
 }
 
-.menu_aside ul li button:hover {
+.menu_aside ul li button:hover,
+.logo_cronos .logout_button:hover {
     background-color: #061a19;
 }
 
@@ -69,6 +85,64 @@
 
 }
 
+.logo_cronos {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    width: 80px;
+    overflow: hidden;
+
+    transition: all 0.2s ease-in-out;
+
+}
+.logo_cronos::after {
+    position: absolute;
+
+    content: '';
+    width: 100%;
+    height: 40px;
+    background-image: linear-gradient(to top, var(--primary-color), transparent);
+    top: -40px;
+}
+
+.logo_cronos .logout_button  {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: 80px;
+
+    padding-left: 10px;
+
+    overflow: hidden;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.menu_aside ul.open_menu ~ .logo_cronos {
+    width: 180px;
+}
+
 .flip_x_1 {
     transform: scale(-1);
+}
+
+.fadeIn {
+    position: relative;
+
+    width: 100%;
+    height: 0px;
+}
+
+.fadeIn::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 40px;
+    background-image: linear-gradient(to top, var(--primary-color), transparent);
+    top: -40px;
 }

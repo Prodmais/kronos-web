@@ -1,10 +1,49 @@
 import Box from '@mui/material/Box';
 import styles from './members.module.css';
 import { useEffect, useState } from 'react';
+import { Avatar } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Members = () => {
 
     const [members, setMembers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    function stringToColor(string) {
+        let hash = 0;
+        let i;
+      
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+          hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+      
+        let color = '#';
+      
+        for (i = 0; i < 3; i += 1) {
+          const value = (hash >> (i * 8)) & 0xff;
+          color += `00${value.toString(16)}`.slice(-2);
+        }
+        /* eslint-enable no-bitwise */
+      
+        return color;
+      }
+      
+      function stringAvatar(name) {
+        return {
+          sx: {
+            bgcolor: stringToColor(name),
+            width: '100%',
+            maxHeight: '90px',
+            padding: 0,
+            height: '100%',
+            fontSize: '1.25em'
+          },
+          children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+          variant: 'rounded',
+        };
+      }
+
 
     useEffect(() => {
 
@@ -12,7 +51,7 @@ const Members = () => {
             {
                 name: 'João Wezen',
                 role: 'QA',
-                quality: 'Bom  gestor'
+                quality: 'Ótimo gestor'
             },
             {
                 name: 'Luiz Victor',
@@ -32,47 +71,59 @@ const Members = () => {
         ]
 
         setMembers(membersMock);
+
+        setTimeout(() => setIsLoading(false), 1000);
+
     }, []);
 
 
     return (
         <section className={styles.members_section}>
 
-            <div className={styles.members_content}>
-                <div className={styles.title}>
-                    <h1>Membros</h1>
-                </div>
+            <header className={styles.title}>
+                <h1>Membros</h1>
+            </header>
 
-                { members.length ? members.map((member) => (
+            <div className={styles.members_content}>
+                
+
+                { isLoading ? 
+                    <Box sx={{ 
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%', 
+                        height: '50vh' ,
+                        background: 'transparent', 
+                    }}>
+                        <CircularProgress sx={{
+                            color: '#FFF',
+                        }}/>
+                    </Box> : 
+                    members.length ? members.map((member) => (
                     <Box
                         key={member.name}
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'flex-start',
-                            minHeight: '100px',
-                            maxHeight: '120px',
+                            minHeight: '120px',
                             height: 'auto',
                             padding: '10px',
                             backgroundColor: '#043434',
                             borderRadius: '8px',
-                            // border: '1px solid red',
-                            // '.className': {}, if i want to style some class
                             'p': {
                                 color: '#FFF'
                             }
                         }}
                     >
                         <div className={styles.image_container}>
-                            <span>
-                                { member.name[0] }
-                                { member.name.split(' ')[1][0] }
-                            </span>
+                            <Avatar {...stringAvatar(member.name)}/>
                         </div>
                         <div className={styles.member_info}>
-                            <p>Nome: {member.name}</p>
-                            <p>Função: {member.role}</p>
-                            <p>Uma Qualidade: {member.quality}</p>
+                            <p>Nome: <span>{member.name}</span></p>
+                            <p>Função: <span>{member.role}</span></p>
+                            <p>Uma Qualidade: <span>{member.quality}</span></p>
                         </div>
                     </Box>
                 )

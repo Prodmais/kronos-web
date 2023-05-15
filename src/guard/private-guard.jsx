@@ -1,14 +1,14 @@
 import { Outlet, Navigate } from "react-router";
 
 
-const AuthGuardRoute = () => {
+const PrivateGuardRoute = () => {
     
     const token = localStorage.getItem('token');
-    if (token) {
-        return <Navigate to='/inicio' />;
+    if (!token) {
+        return <Navigate to='/auth' />;
     }
     
     return <Outlet />;
 }
 
-export default AuthGuardRoute;
+export default PrivateGuardRoute;

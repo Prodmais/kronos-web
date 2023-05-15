@@ -1,4 +1,4 @@
-import styles from "./styles.module.css"
+import styles from "./card-o.module.css"
 import ActivityCard from "./activityCard"
 
 
@@ -12,4 +12,4 @@ function Cartoes() {
 }
 
 
-export default Cartoes
+export default Cartoes;

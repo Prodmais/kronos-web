@@ -1,4 +1,4 @@
-import styles from "./styles.module.css"
+import styles from "./card-o.module.css"
 
 const ActivityCard = () => {
   return(

@@ -1,13 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-* {
+.login_section * {
   font-family: 'Itim', cursive;
 }
 
 .login_section {
+
+  position: relative;
+
   width: 100vw;
   height: 100%;
   background-color: var(--login-bg-color);
+}
+
+.loginSVG {
+  position: absolute;
+  max-width: 300px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  left: -140%;
+
+}
+
+.loginSVG img {
+  width: 100%;
 }
 
 .center {
@@ -19,12 +36,13 @@
   width: 100%;
 }
 
-label{
+label {
   color: white;
   font-size: 18px;
   line-height: 1.5em;
   margin-left: 0.4em;
 }
+
 .containerInput {
   position: relative;
   color: white;
@@ -46,7 +64,7 @@ label{
   left: 10px;
 }
 
-input {
+.login_section input {
   font-size: 19px;
   position: absolute;
   border: none;
@@ -58,7 +76,8 @@ input {
   padding: 5px 45px;
   outline: 0;
 }
-input::placeholder{
+
+.login_section input::placeholder{
   color: white;
   font-size: 17px;
 }
@@ -67,6 +86,7 @@ input::placeholder{
   text-align: right;
   width: 98%;
 }
+
 .ForgetPassword a {
   font-size: 17px;
   color: white;
@@ -88,6 +108,7 @@ input::placeholder{
 .logo{
   text-align: center;
 }
+
 .logo img{
   width: 160px;
   height: auto;

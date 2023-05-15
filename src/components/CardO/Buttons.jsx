@@ -1,4 +1,4 @@
-import styles from "./styles.module.css"
+import styles from "./card-o.module.css";
 
 
  function ButtonsNav() {
@@ -24,4 +24,4 @@ import styles from "./styles.module.css"
   )
 }
 
-export default ButtonsNav
+export default ButtonsNav;
