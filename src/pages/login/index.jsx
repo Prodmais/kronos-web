@@ -10,6 +10,7 @@ import { Alert, Box, CircularProgress, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { authentication, setToken } from '../../services/authenticate-service';
+import { enqueueSnackbar } from 'notistack';
 
 const Login = () => {
 
@@ -80,14 +81,18 @@ const Login = () => {
       })
       .catch(error => {
 
-        addAlert({
-          message: 'Email ou senha inválidos',
-          severity: 'error'
-        });
+        // addAlert({
+        //   message: 'Email ou senha inválidos',
+        //   severity: 'error'
+        // });
 
-        setTimeout(() => {
-          setOpen(false);
-        }, 2000)
+        // setTimeout(() => {
+        //   setOpen(false);
+        // }, 2000)
+
+        enqueueSnackbar('Email ou senha inválidos', {
+          variant: 'error'
+        });
 
         console.error(error);
       })
@@ -98,7 +103,7 @@ const Login = () => {
 
   return (
     <section className={styles.login_section}>
-
+{/* 
       <Snackbar
         autoHideDuration={2000}
         open={open}
@@ -107,7 +112,7 @@ const Login = () => {
         <Alert severity={ alert.severity } sx={{ width: '100%' }}>
           { alert.message  }
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
 
       <div className={styles.center}>
         <div className={styles.logo}>
