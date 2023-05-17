@@ -4,6 +4,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Lock from '@mui/icons-material/Lock';
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import { createUser, setToken } from '../../services/authenticate-service';
+import { useNavigate } from 'react-router';
+import { enqueueSnackbar } from 'notistack';
 
 export default function CreateUser() {
 
@@ -14,9 +17,37 @@ export default function CreateUser() {
     const [date, setDate] = useState(new Date());
     const [category, setCategory] = useState('');
 
+    const [isLoading, setIsLoading] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleSubimit = (event) => {
+
+        event.preventDefault();
+
+        setIsLoading(true);
+
+        createUser({
+            name,
+            lastName,
+            email,
+            password
+        }).then(response => {
+            setToken({ token: response.data.token });
+
+            navigate('/primeiro');
+        }).catch(erro => {
+            enqueueSnackbar('Falha ao cadastrar usuário.', {
+                variant: 'error'
+            })
+        }).finally(() => {
+            setIsLoading(false);
+        });
+    }
+
     return (
         <div className={styles.background_signup}>
-            <form>
+            <form onSubmit={(e) => handleSubimit(e)}>
                 <legend className={styles.signup_form_title}>CADASTRE-SE AQUI</legend>
                 {/* Input Nome */}
 
@@ -28,7 +59,7 @@ export default function CreateUser() {
                 {/* Input SobreNome */}
                 <div className={styles.background_signup_container}>
                     <AccountCircle className={styles.background_signup_icon} />
-                    <input type='text' value={lastName} onChange={(e)=> setLastName(e.target.value)} name='lastName'  className={styles.background_signup_input} placeholder='Sobrenome' />
+                    <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} name='lastName' className={styles.background_signup_input} placeholder='Sobrenome' />
                 </div>
 
                 {/* Input Email */}
@@ -40,7 +71,7 @@ export default function CreateUser() {
                 {/* Input Password */}
                 <div className={styles.background_signup_container}>
                     <Lock className={styles.background_signup_icon} />
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}  name="password" className={styles.background_signup_input} placeholder='Password' />
+                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} name="password" className={styles.background_signup_input} placeholder='Password' />
                 </div>
 
                 {/* Input Data Nascimento */}
@@ -50,7 +81,7 @@ export default function CreateUser() {
                         const newDate = new Date(e.target.value);
                         newDate.setDate(Number(e.target.value.slice(-2)));
                         setDate(newDate);
-                        }} name="birthday" className={styles.background_signup_input} placeholder='25/05/2023'/>
+                    }} name="birthday" className={styles.background_signup_input} placeholder='25/05/2023' />
                 </div>
 
                 {/* Input Categoria */}
@@ -60,21 +91,21 @@ export default function CreateUser() {
                         <label className={styles.background_signup_label_radio} for="school">
                             Escola
                         </label>
-                        <input type="radio" id="school" name="category" className={styles.background_signup_radio} value={true} onClick={()=> setCategory('school')}/>
+                        <input type="radio" id="school" name="category" className={styles.background_signup_radio} value={true} onClick={() => setCategory('school')} />
                     </div>
 
                     <div className={styles.background_signup_container_radio}>
                         <label name="category" className={styles.background_signup_label_radio} for="company">
                             Empresa
                         </label>
-                        <input type="radio" id="company" name="category" className={styles.background_signup_radio} onClick={()=> setCategory('company')}/>
+                        <input type="radio" id="company" name="category" className={styles.background_signup_radio} onClick={() => setCategory('company')} />
                     </div>
 
                     <div className={styles.background_signup_container_radio}>
                         <label className={styles.background_signup_label_radio} for="other">
                             Outro
                         </label>
-                        <input type="radio" name="category" id="other" className={styles.background_signup_radio} onClick={()=> setCategory('other')}/>
+                        <input type="radio" name="category" id="other" className={styles.background_signup_radio} onClick={() => setCategory('other')} />
                     </div>
                 </div>
 
@@ -85,7 +116,7 @@ export default function CreateUser() {
                     Ao clicar em Cadastre-se, você concorda com nossos <a className={styles.background_signup_span_link} href='#'>Termos, Política de Privacidade e Política de Cookies.</a> Você poderá receber notificações por SMS e cancelar isso quando quiser.
                 </span>
 
-                <Button sx={{
+                <Button type='submit' sx={{
                     color: 'white',
                     borderColor: 'white',
                     margin: 2,
@@ -93,7 +124,7 @@ export default function CreateUser() {
                         borderColor: 'white',
                         backgroundColor: 'rgba(255,255,255,0.2)'
                     }
-                }}variant="outlined">Cadastre-se</Button>
+                }} variant="outlined">Cadastre-se</Button>
             </form>
         </div>
     );
