@@ -22,7 +22,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='' element={<AuthGuardRoute />}>
-
+            <Route path='' element={<Navigate to={'auth'} />} />
             <Route path='auth' element={ <Login /> } />
             <Route path='signup' element={<CreateUser />}/>
 
