@@ -5,17 +5,28 @@ import styles from './list-projects.module.css';
 import Button from "@mui/material/Button";
 import NoProjects from "../NoProjects";
 import { Box, CircularProgress } from "@mui/material";
+import { ProjectsService } from "../../services/projects-service";
 
 
 const ListProjects = () => {
+    const projectsService = new ProjectsService();
 
-    const [projects, setProjects] = useState([1, 2, 3, 4, 5, 6, 7]);
-    // const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => setIsLoading(false), 1000);
+
+        projectsService.getAllProjects()
+            .then((projects) => {
+                setProjects([]);
+                setProjects([...projects]);
+
+                setIsLoading(false)
+
+                console.log([...projects]);
+            })
+            .catch(error => console.error(error));
     }, [])
 
     const navigate = useNavigate();
@@ -58,11 +69,14 @@ const ListProjects = () => {
                 <div className={styles.list_container}>
                     <ul>
                         { projects.map(project => (
-                            <li className={styles.card_list} key={project} >
-                                <button onClick={() => navigate('/quadros')}>
+                            <li className={styles.card_list} key={project.id} >
+                                <button onClick={() => navigate(`/quadros/${project.id}`)}>
                                     <div className={styles.informations}>
-                                        <h2>Cronos System</h2>
-                                        <p className={styles.description} >Descrição do projeto</p>
+
+                                        <h2>{project.title}</h2>
+                                        <p className={styles.description} >
+                                            {project.description}
+                                        </p>
                                     </div>
                                     <p className={styles.last_update}>
                                         <span>Útima atualização</span>

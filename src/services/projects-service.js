@@ -1,15 +1,14 @@
 import api from "../api";
+import { AuthenticateService } from "./authenticate-service";
 
 export class ProjectsService {
-    constructor(
-        // private _authService: Authen
-    ) {}
+    constructor() {
+        this.authService = new AuthenticateService();
+    }
 
-    getAllProjects () {
-        api.get('project', {
-            headers: {
-                Authorization: 'Bearer '
-            }
-        })
+    async getAllProjects () {
+
+        const projects = (await api.get('project')).data
+        return projects;
     }
 }

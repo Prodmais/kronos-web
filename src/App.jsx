@@ -32,7 +32,7 @@ function App() {
 
                 <Route path='' element={<Navigate to={'inicio'} />} />
                 <Route path='inicio' element={ <InitialPage /> }/>
-                <Route path='quadros' element={ <Boards /> }/>
+                <Route path='quadros/:id' element={ <Boards /> }/>
 
                 <Route path='projetos'>
 

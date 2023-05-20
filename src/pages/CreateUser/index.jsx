@@ -4,7 +4,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Lock from '@mui/icons-material/Lock';
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { createUser, setToken } from '../../services/authenticate-service';
+import { AuthenticateService } from '../../services/authenticate-service';
 import { useNavigate } from 'react-router';
 import { enqueueSnackbar } from 'notistack';
 import InputError from '../../components/InputError';
@@ -19,6 +19,7 @@ export default function CreateUser() {
     const [date, setDate] = useState(new Date());
     const [category, setCategory] = useState('school');
     const [isSubmit, setIsSubmit] = useState(false);
+    const authenticateService = new AuthenticateService();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +34,7 @@ export default function CreateUser() {
         setIsSubmit(true);
         setIsLoading(true);
 
-        createUser({
+        authenticateService.createUser({
             name,
             lastName,
             email,

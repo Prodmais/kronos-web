@@ -77,7 +77,6 @@ const Navbar = () => {
                 }}
             >
                 <MenuItem onClick={() => handleClose('profile')}>Perfil</MenuItem>
-                <MenuItem onClick={() => handleClose('account')}>Minha Conta</MenuItem>
                 <MenuItem onClick={() => handleClose('logout')}>Sair</MenuItem>
             </Menu>
 

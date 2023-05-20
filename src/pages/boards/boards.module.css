@@ -6,14 +6,16 @@
 
     overflow-y: auto;
     padding: 0 30px;
+    padding-right: 10px;
 }
 
 .boards_section header {
 
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    max-width: 550px;
     width: 100%;
     height: auto;
 
@@ -24,13 +26,17 @@
 .boards_section header .sort_options {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-around;
+
+    width: 100%;
     gap: 30px;
 }
 
 .boards_section header .input_search {
     position: relative;
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
 }
 
 .boards_section header .input_search > svg {
@@ -65,7 +71,8 @@
     justify-content: flex-start;
 
     gap: 20px;
-    width: calc(100% - 180px);
+    /* max-width: calc(100vw - 220px); */
+    width: 100%;
     height: 100vh;
 
     margin-top: 50px;

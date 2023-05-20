@@ -3,6 +3,44 @@ import styles from './card.module.css';
 
 const BoardCard = ({ title, tasks }) => {
 
+  /* 
+  
+   "Tasks": [
+            {
+                "id": 5,
+                "name": "Test 33",
+                "description": "test",
+                "status": null,
+                "endDate": "2023-03-15T14:35:46.143Z",
+                "createdAt": "2023-05-18T23:40:27.147Z",
+                "updatedAt": "2023-05-18T23:40:27.147Z",
+                "boardId": 4,
+                "ownerId": null,
+                "User": null
+            },
+            {
+                "id": 4,
+                "name": "Test 3",
+                "description": "test",
+                "status": null,
+                "endDate": "2023-03-18T14:35:46.143Z",
+                "createdAt": "2023-05-18T23:37:18.411Z",
+                "updatedAt": "2023-05-18T23:42:50.241Z",
+                "boardId": 4,
+                "ownerId": 4,
+                "User": {
+                    "id": 4,
+                    "name": "Ruiz",
+                    "lastName": "Affonso",
+                    "email": "ruiz@gmail.com"
+                }
+            }
+        ]
+
+
+
+  */
+
     return (
         <Card sx={{
           backgroundColor: 'transparent',
@@ -34,7 +72,7 @@ const BoardCard = ({ title, tasks }) => {
             }} >
               { tasks.length ? tasks.map(task => (
 
-                <div key={task.title} style={{
+                <div key={task.id} style={{
                   backgroundColor: '#ffff',
                   padding: '20px',
                   borderRadius: 8,
@@ -50,7 +88,7 @@ const BoardCard = ({ title, tasks }) => {
                     overflow: 'hidden', 
                     textOverflow: 'ellipsis',
                   }} component="div">
-                    { task.title }
+                    { task.name }
                   </Typography>
 
                   <Typography sx={{ mb: 1.5, flexGrow: 1 }} color="#756966">
@@ -66,19 +104,25 @@ const BoardCard = ({ title, tasks }) => {
                     fontSize: '0.9em',
                     fontWeight: 600,
                   }} variant="body2">
-                    criado em: { task.createdAt.toLocaleDateString('pt') }
+                    criado em: { new Date(task.createdAt).toLocaleDateString('pt') }
                   </Typography>
                 
                 </div>
 
               ))
-
-                
-                
               : <>
 
                 <div className={styles.board_item}>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  <Typography sx={{ 
+                    display: 'flex',
+                    color: '#756966',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    backgroundColor: '#FFF',
+                    borderRadius: '8px',
+                    mb: 1.5 
+                  }} color="text.secondary">
                     Não há tarefas em { title }
                   </Typography>
                 </div>

@@ -5,7 +5,8 @@
 
     padding: 10px 20px;
 
-    width: calc(100vw - 200px);
+    /* width: calc(100vw - 200px); */
+    width: calc(100% - 20px);
     min-height: 80px;
 
     background-color: transparent;
