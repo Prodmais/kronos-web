@@ -9,11 +9,14 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
 import store from './store';
+import { SnackbarProvider } from 'notistack'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <SnackbarProvider autoHideDuration={5000}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </SnackbarProvider>
   </React.StrictMode>,
 )

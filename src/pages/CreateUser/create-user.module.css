@@ -35,6 +35,20 @@
     margin-bottom: 16px;
 }
 
+.background_signup_container_error {
+    border: 1px solid #D32F2F;
+    margin-bottom: 0;
+}
+
+.input_error {
+    align-self: flex-start;
+    margin-bottom: 16px;
+}
+
+.input_error_first {
+    margin-bottom: 2px;
+}
+
 .background_signup_icon {
     margin: 8px;
 }
