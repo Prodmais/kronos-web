@@ -91,6 +91,22 @@ label {
   font-size: 17px;
   color: white;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.CreateAcount {
+  text-align: center;
+  font-size: 11px;
+  color: white;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.CreateAcount a {
+  font-size: 11px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .buttonLogin {

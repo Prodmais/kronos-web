@@ -9,7 +9,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import { Alert, Box, CircularProgress, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import { authentication, setToken } from '../../services/authenticate-service';
+import { AuthenticateService } from '../../services/authenticate-service';
+import { enqueueSnackbar } from 'notistack';
 
 const Login = () => {
 
@@ -27,6 +28,8 @@ const Login = () => {
     vertical: 'top',
   });
 
+  const authenticateService = new AuthenticateService();
+
   const [open, setOpen] = useState(false);
 
   const handleClose = (event, reason) => {
@@ -42,8 +45,8 @@ const Login = () => {
   function addAlert({ message, severity, horizontal, vertical }) {
 
     setOpen(true);
-    setAlert({ 
-      message, 
+    setAlert({
+      message,
       severity: severity || 'success',
       horizontal: horizontal || 'center',
       vertical: vertical || 'top'
@@ -53,11 +56,11 @@ const Login = () => {
   }
 
   function handleEmail(event) {
-    setUser({...user, email: event.target.value});
+    setUser({ ...user, email: event.target.value });
   }
 
   function handlePassword(event) {
-    setUser({...user, password: event.target.value});
+    setUser({ ...user, password: event.target.value });
   }
 
   function handleSubmit(event) {
@@ -66,28 +69,32 @@ const Login = () => {
 
     setIsLoading(true);
 
-    authentication({
-      email: user.email, 
+    authenticateService.authentication({
+      email: user.email,
       password: user.password
     })
       .then(response => {
         console.log(response);
 
-        setToken({ token: response.data.token });
+        authenticateService.setToken({ token: response.data.token });
 
         navigate('/inicio');
 
       })
       .catch(error => {
 
-        addAlert({
-          message: 'Email ou senha inválidos',
-          severity: 'error'
-        });
+        // addAlert({
+        //   message: 'Email ou senha inválidos',
+        //   severity: 'error'
+        // });
 
-        setTimeout(() => {
-          setOpen(false);
-        }, 2000)
+        // setTimeout(() => {
+        //   setOpen(false);
+        // }, 2000)
+
+        enqueueSnackbar('Email ou senha inválidos', {
+          variant: 'error'
+        });
 
         console.error(error);
       })
@@ -98,7 +105,7 @@ const Login = () => {
 
   return (
     <section className={styles.login_section}>
-
+      {/* 
       <Snackbar
         autoHideDuration={2000}
         open={open}
@@ -107,51 +114,56 @@ const Login = () => {
         <Alert severity={ alert.severity } sx={{ width: '100%' }}>
           { alert.message  }
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
 
       <div className={styles.center}>
         <div className={styles.logo}>
-          <img src={logo} alt="logoCronos" className={styles.logoCronos}/>
+          <img src={logo} alt="logoCronos" className={styles.logoCronos} />
         </div>
         <div className={styles.loginSVG}>
           <img src={loginSVG} alt="Login SVG" />
         </div>
         <form onSubmit={handleSubmit}>
 
-            <label htmlFor="email">Email
-              <div className={styles.containerInput}>
-                <EmailIcon className={styles.iconInput} />
-                <input onChange={handleEmail} type="email" name='email' id='email' value={user.email} placeholder='seuemail@email.com' required/>
-              </div>
-            </label>
-          
-            <label htmlFor="password">Password
-              <div className={styles.containerInput}>
+          <label htmlFor="email">Email
+            <div className={styles.containerInput}>
+              <EmailIcon className={styles.iconInput} />
+              <input onChange={handleEmail} type="email" name='email' id='email' value={user.email} placeholder='seuemail@email.com' required />
+            </div>
+          </label>
+
+          <label htmlFor="password">Password
+            <div className={styles.containerInput}>
               <LockIcon className={styles.iconInput} />
-                <input onChange={handlePassword} type="password" name="password" id="password" value={user.password} placeholder='Digite sua senha' required/>
-              </div>
-            </label>
-          
+              <input onChange={handlePassword} type="password" name="password" id="password" value={user.password} placeholder='Digite sua senha' required />
+            </div>
+          </label>
+
           <div className={styles.ForgetPassword}>
             <Link to="forgetpassword">Esqueceu sua senha?</Link>
           </div>
+
           <div>
             <button type='submit' className={styles.buttonLogin}>
 
-              { isLoading ? <Box sx={{ 
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                    height: '100%',
-                    background: 'transparent',
-                }}>
-                    <CircularProgress size={24} sx={{
-                        color: '#FFF',
-                    }}/>
-                </Box>  : <span>Login</span>}
+              {isLoading ? <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                background: 'transparent',
+              }}>
+                <CircularProgress size={24} sx={{
+                  color: '#FFF',
+                }} />
+              </Box> : <span>Login</span>}
 
             </button>
+          </div>
+
+          <div className={styles.CreateAcount }>
+            <Link to="/signup">Ainda não possui conta? Cadastre-se aqui!</Link>
           </div>
         </form>
       </div>

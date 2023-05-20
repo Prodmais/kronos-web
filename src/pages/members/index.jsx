@@ -34,13 +34,14 @@ const Members = () => {
           sx: {
             bgcolor: stringToColor(name),
             width: '100%',
-            maxHeight: '90px',
+            maxWidth: '80px',
+            maxHeight: '80px',
             padding: 0,
             height: '100%',
-            fontSize: '1.25em'
+            fontSize: '1.2em'
           },
           children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-          variant: 'rounded',
+          variant: 'squared',
         };
       }
 
@@ -49,24 +50,24 @@ const Members = () => {
 
         const membersMock = [
             {
-                name: 'João Wezen',
-                role: 'QA',
-                quality: 'Ótimo gestor'
+                name: 'João',
+                lastName: 'Wezen',
+                email: 'joaowezen21@gmail.com'
             },
             {
-                name: 'Luiz Victor',
-                role: 'Dev Fullstack Jr',
-                quality: 'Ótimo desenvolvedor'
+                name: 'Luiz',
+                lastName: 'Andrade',
+                email: 'luizvictor1231@gmail.com'
             },
             {
-                name: 'Luís Eduardo',
-                role: 'Dev Java Jr',
-                quality: 'Ótimo desenvolvedor'
+                name: 'Luís',
+                lastName: 'Eduardo',
+                email: 'luisedu123@gmail.com'
             },
             {
-                name: 'Affonso Ruiz',
-                role: 'Dev Back-end Jr',
-                quality: 'Ótimo desenvolvedor'
+                name: 'Affonso',
+                lastName: 'Ruiz',
+                email: 'affonsoruiz231@gmail.com'
             },
         ]
 
@@ -118,12 +119,12 @@ const Members = () => {
                         }}
                     >
                         <div className={styles.image_container}>
-                            <Avatar {...stringAvatar(member.name)}/>
+                            <Avatar {...stringAvatar(`${member.name} ${member.lastName}`)}/>
                         </div>
                         <div className={styles.member_info}>
                             <p>Nome: <span>{member.name}</span></p>
-                            <p>Função: <span>{member.role}</span></p>
-                            <p>Uma Qualidade: <span>{member.quality}</span></p>
+                            <p>Sobrenome: <span>{member.lastName}</span></p>
+                            <p>E-mail: <span>{member.email}</span></p>
                         </div>
                     </Box>
                 )
