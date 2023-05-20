@@ -9,8 +9,9 @@ const BoardCard = ({ title, tasks }) => {
           border: '1px solid #0c46464d',
           borderRadius: '10px',
           minWidth: 350, 
-          width: '100%' ,
-          height: 600,
+          width: '100%',
+          minHeight: 500,
+          maxHeight: 800,
           position: 'relative',
         }}>
 
@@ -29,7 +30,7 @@ const BoardCard = ({ title, tasks }) => {
               gap: '25px',
               margin: '72px 0',
               overflow: 'auto',
-              height: 530
+              height: 'calc(100% - 80px)',
             }} >
               { tasks.length ? tasks.map(task => (
 

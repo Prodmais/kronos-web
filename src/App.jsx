@@ -3,18 +3,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import './App.css';
 
+import AuthGuardRoute from './guard/auth-guard';
+import PrivateGuardRoute from './guard/private-guard';
 import Boards from './pages/Boards';
 import CreateProject from './pages/CreateProject';
+import CreateUser from './pages/CreateUser';
+import InitialPage from './pages/InitialPage';
+import ListProjects from './pages/ListProjects';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Members from './pages/Members';
 import MessageCreateProject from './pages/MessageCreateProject';
-import AuthGuardRoute from './guard/auth-guard';
-import ListProjects from './pages/ListProjects';
-import InitialPage from './pages/InitialPage';
-import CreateUser from './pages/CreateUser';
-import { Alert, Snackbar } from '@mui/material';
-import PrivateGuardRoute from './guard/private-guard';
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='' element={<AuthGuardRoute />}>
-
+            <Route path='' element={ <Navigate to='auth'/> } />
             <Route path='auth' element={ <Login /> } />
             <Route path='signup' element={<CreateUser />}/>
 

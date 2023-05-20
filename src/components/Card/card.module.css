@@ -1,6 +1,6 @@
 .card_content::-webkit-scrollbar,
 .card_content::-webkit-scrollbar-thumb {
-    width: 5px;
+    width: 10px;
     background-color: #cecece;
     border-radius: 6px;
 }
