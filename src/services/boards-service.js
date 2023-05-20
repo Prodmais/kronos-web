@@ -4,8 +4,11 @@ export class BoardsService {
     
     constructor () {}
 
-    getAllboards() {
-        api.get()
+    async getAllboardsByProject(id) {
+        const boards = (await api.get(`board/${id}`)).data;
+
+        return boards;
+
     }
 
 }

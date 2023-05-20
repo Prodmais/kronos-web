@@ -9,7 +9,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import { Alert, Box, CircularProgress, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import { authentication, setToken } from '../../services/authenticate-service';
+import { AuthenticateService } from '../../services/authenticate-service';
 import { enqueueSnackbar } from 'notistack';
 
 const Login = () => {
@@ -27,6 +27,8 @@ const Login = () => {
     horizontal: 'center',
     vertical: 'top',
   });
+
+  const authenticateService = new AuthenticateService();
 
   const [open, setOpen] = useState(false);
 
@@ -67,14 +69,14 @@ const Login = () => {
 
     setIsLoading(true);
 
-    authentication({
+    authenticateService.authentication({
       email: user.email,
       password: user.password
     })
       .then(response => {
         console.log(response);
 
-        setToken({ token: response.data.token });
+        authenticateService.setToken({ token: response.data.token });
 
         navigate('/inicio');
 

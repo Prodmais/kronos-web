@@ -1,6 +1,8 @@
 import api from '../api';
 
-export const authentication = async ({ email, password }) => {
+export class AuthenticateService {
+    
+    async authentication  ({ email, password }) {
     try {
 
         const login = await api.post('/auth/signin', {
@@ -13,7 +15,7 @@ export const authentication = async ({ email, password }) => {
     }
 };
 
-export const createUser = async({ name, lastName, email, password, phone="99999999999" }) => {
+    async createUser ({ name, lastName, email, password, phone="99999999999" }) {
     try {
         const created = await api.post('/auth/signup', {
             name,
@@ -28,6 +30,7 @@ export const createUser = async({ name, lastName, email, password, phone="999999
     }
 };
 
-export const setToken = ({ token }) => {
-    localStorage.setItem('token', token);
-};
+    setToken ({ token }) {
+        localStorage.setItem('token', token);
+    }
+}
