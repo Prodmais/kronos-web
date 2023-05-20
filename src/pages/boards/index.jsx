@@ -9,7 +9,9 @@ import styles from "./boards.module.css";
 
 const Boards = () => {
 
-  const [tasks, setTasks] = useState({
+  const [boards, setBoards] = useState([]);
+
+  const [tasks, setTasks] = useState({    
     do: [
       {
         title: "Estudar Lógica de programação",
@@ -72,24 +74,13 @@ const Boards = () => {
             <input placeholder='Pesquisar por atividade' type="text" />
             <SearchIcon />
           </div>
-          <Button sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-            color: '#FFF',
-            padding: '10px !important',
-            maxWidth: '130px',
-            width: '100%',
-          }}>
-            <FilterListIcon />
-            Filtro
-          </Button>
         </div>
 
         <Button
           sx={{
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             backgroundColor: '#FFF',
             color: 'var(--primary-color)'
           }}
