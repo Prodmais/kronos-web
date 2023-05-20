@@ -4,11 +4,15 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import styles from './create-project.module.css';
+import FormProject from '../../components/FormProject';
 
 function CreateProject() {
     return (
         <section className={styles.create_project_section}>
-            <div className={styles.container_pg_criar_projeto}>
+
+            <FormProject />
+
+            {/* <div className={styles.container_pg_criar_projeto}>
                 <div className={styles.div_perfil}>
                     <div className={styles.perfil_do_usuario}>
                         <PersonIcon />
@@ -25,7 +29,7 @@ function CreateProject() {
                         </div>
                         <div className={styles.form_name_projeto}>
                             {/* <TextField sx={{ background: 'white' }} label="Invoice’s Name" variant="outlined" />
-                            <TextField sx={{ outline: '0' }} disabled id="outlined-disabled" label="Item #1" /> */}
+                            <TextField sx={{ outline: '0' }} disabled id="outlined-disabled" label="Item #1" />
 
                             <Button variant="text">Adicionar mais itens</Button>
                         </div>
@@ -33,7 +37,7 @@ function CreateProject() {
                         <div className={styles.form_opcoes}>
                             {/* <TextField sx={{ background: 'white', margin: '5px' }} label="Start date" variant="outlined" />
                             <TextField sx={{ background: 'white', margin: '5px' }} label="Start end" variant="outlined" />
-                            <TextField sx={{ background: 'white', margin: '5px' }} label="Price" variant="outlined" /> */}
+                            <TextField sx={{ background: 'white', margin: '5px' }} label="Price" variant="outlined" /> 
                         </div>
                     </div>
                     <div className={styles.form_criar_projeto_col_02}>
@@ -44,7 +48,7 @@ function CreateProject() {
                             {/* <TextField sx={{ background: 'white', margin: '5px' }} id="outlined-basic" label="Nome do participante" variant="outlined" />
                             <TextField sx={{ background: 'white', margin: '5px' }} id="outlined-basic" label="email" variant="outlined" />
                             <TextField sx={{ background: 'white', margin: '5px' }} id="outlined-basic" label="Registration Number (optional)" variant="outlined" />
-                            <TextField sx={{ background: 'white', margin: '5px' }} id="outlined-basic" label="Tax ID" variant="outlined" /> */}
+                            <TextField sx={{ background: 'white', margin: '5px' }} id="outlined-basic" label="Tax ID" variant="outlined" />
                         </div>
                         <div className={styles.pg_buttom_projeto}>
                             <Button sx={{ width: '25ch', background: '#FFFFFF' }} variant="text">Voltar</Button>
@@ -52,7 +56,7 @@ function CreateProject() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 }
