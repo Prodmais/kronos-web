@@ -4,7 +4,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Lock from '@mui/icons-material/Lock';
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { createUser, setToken } from '../../services/authenticate-service';
+import { AuthenticateService } from '../../services/authenticate-service';
 import { useNavigate } from 'react-router';
 import { enqueueSnackbar } from 'notistack';
 import InputError from '../../components/InputError';
@@ -25,6 +25,8 @@ export default function CreateUser() {
     const emailRegex = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
     const passwordRegex = new RegExp(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/);
 
+    const authenticateService = new AuthenticateService();
+
     const navigate = useNavigate();
 
     const handleSubimit = (event) => {
@@ -33,13 +35,13 @@ export default function CreateUser() {
         setIsSubmit(true);
         setIsLoading(true);
 
-        createUser({
+        authenticateService.createUser({
             name,
             lastName,
             email,
             password
         }).then(response => {
-            setToken({ token: response.data.token });
+            authenticateService.setToken({ token: response.data.token });
 
             navigate('/primeiro');
         }).catch(erro => {

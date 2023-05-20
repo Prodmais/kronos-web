@@ -1,17 +1,32 @@
 import { Button, TextField } from '@mui/material';
 import styles from './form-project.module.css';
 import { useState } from 'react';
+import { enqueueSnackbar } from 'notistack';
+import { ProjectsService } from '../../services/projects-service';
 
-export default function FormProject() {
+export default function FormProject({ onNextAction, onBackAction }) {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [isSubmit, setSubmit] = useState(false);
 
+    const projectService = new ProjectsService();
+
     const handleSubimt = (event) => {
         event.preventDefault();
 
         setSubmit(true);
+
+        projectService.createProject({
+            title: name,
+            description: description,
+        }).then(response => {
+            onNextAction();
+        }).catch(error => {
+            enqueueSnackbar('Falha ao criar o projeto!', {
+                variant: 'error'
+            });
+        })
     }
 
     return (
@@ -27,16 +42,16 @@ export default function FormProject() {
                                 display: !name && isSubmit ? 'initial' : 'none',
                             }
                         }
-                    } 
-                    inputProps={
-                        {
-                            style: {
-                                backgroundColor: '#FFFFFF'
+                    }
+                        inputProps={
+                            {
+                                style: {
+                                    backgroundColor: '#FFFFFF'
+                                }
                             }
                         }
-                    }
-                    id="outlined-disabled outlined-error-helper-text" placeholder='Nome do Projeto' value={name} onChange={(e) => setName(e.target.value)} 
-                    helperText="Preencha o campo Nome do Projeto!" error={!name && isSubmit} />
+                        id="outlined-disabled outlined-error-helper-text" placeholder='Nome do Projeto' value={name} onChange={(e) => setName(e.target.value)}
+                        helperText="Preencha o campo Nome do Projeto!" error={!name && isSubmit} />
                 </div>
 
                 <div className={styles.form_project_input}>
@@ -48,7 +63,7 @@ export default function FormProject() {
 
             <div className={styles.form_project_buttons}>
 
-                <Button sx={
+                <Button type='button' sx={
                     {
                         width: '100%',
                         maxWidth: 120,
@@ -60,7 +75,7 @@ export default function FormProject() {
                             backgroundColor: 'rgba(255,255,255,0.2)'
                         }
                     }
-                } variant="contained">Voltar</Button>
+                } variant="contained" onClick={() => onBackAction() }>Voltar</Button>
 
                 <Button type='submit' sx={
                     {

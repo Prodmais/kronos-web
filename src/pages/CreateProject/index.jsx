@@ -1,16 +1,15 @@
-
-import PersonIcon from '@mui/icons-material/Person';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-
 import styles from './create-project.module.css';
 import FormProject from '../../components/FormProject';
+import { useNavigate } from 'react-router';
 
 function CreateProject() {
+
+    const navigate = useNavigate();
+
     return (
         <section className={styles.create_project_section}>
 
-            <FormProject />
+            <FormProject onBackAction={() => navigate('/inicio')} onNextAction={() => navigate('/projetos')}/>
 
             {/* <div className={styles.container_pg_criar_projeto}>
                 <div className={styles.div_perfil}>
