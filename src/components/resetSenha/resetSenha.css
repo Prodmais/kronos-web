@@ -1,0 +1,73 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background: #85B0B0;
+
+}
+.container_reset_senha{
+    box-shadow: 0px 0px 5px 4px rgba(211,211,211);
+    border-radius: 10px;
+    background: #002D2B;
+    padding: 1rem;
+    width: 400px;
+}
+/* Estilos para telas menores que 767px */
+@media (max-width: 767px) {
+    .container_reset_senha{
+        width: auto !important;
+    }
+}
+.titulo_reset_senha{
+    font-size: 22px;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+}
+.paragraph_reset_senha{
+    font-size: 19px;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+}
+
+.div_input_email{
+    padding: 1% 10% 1% 10%;
+   
+}
+.input_email{
+    border: none;
+    padding: 2.5%;
+    width: 100%;
+    border-radius: 5px;
+}
+.div_botao_enviar_senha{
+    padding: 3% 10% 1% 10%;
+}
+.botao_enviar_senha{
+    width: 50%;
+    border-radius: 5px;
+    border: none;
+    padding: 2.5%;
+    text-align: center;
+    background: #85B0B0;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+.botao_enviar_senha:hover{
+    background: white;
+    color: black;
+}
+
