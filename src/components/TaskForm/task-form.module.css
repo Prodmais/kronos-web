@@ -19,6 +19,7 @@
 
   display: flex;
   flex-direction: column;
+  gap: 20px;
 
   background-color: #fff;
   min-width: 250px;
@@ -31,7 +32,7 @@
   margin-bottom: 35px;
 
 }
-.dateCampS{
+.dateCampS {
   width: 150px;
 }
 .dateCampE{
@@ -43,7 +44,7 @@
 }
 .formulario input {
   width: 100%;
-  height: 15px;
+  height: 40px;
   padding: 15px;
   margin-top: 10px;
 

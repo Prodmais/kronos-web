@@ -32,8 +32,8 @@ const Boards = () => {
     setOpen(!open);
   }
 
-  function handleSubmit() {
-
+  function handleSubmit(task) {
+    console.log(task)
   }
 
   return (
@@ -48,7 +48,11 @@ const Boards = () => {
             justifyContent: 'center',
           }}
         >
-          <TaskForm />
+          <TaskForm 
+            boards={boards}
+            users={[]}
+            handleSubmit={handleSubmit}
+          />
         </DialogContent>
       </Dialog>
 
