@@ -3,8 +3,11 @@ import AddIcon from '@mui/icons-material/Add';
 
 import createProjectImage from '../../assets/create-project.svg';
 import styles from './menssege-create-project.module.css';
+import { useNavigate } from 'react-router';
 
 function MessageCreateProject() {
+
+  const navigate = useNavigate();
 
   return (
     <section className={styles.message_section}>
@@ -19,8 +22,8 @@ function MessageCreateProject() {
             <p className={styles.paragraph_mensagem_projeto} >Deseja criar seu primeiro projeto?</p>
           </div>
           <div className={styles.botao_mensagem}>
-            <button className={styles.botao_criar_projeto} type="button" value="cadastrar-projeto"> <AddIcon />Criar Projeto</button>
-            <button className={styles.botao_criar_projeto_depois} type="button" value="cadastrar-projeto-depois">Cadastrar Mais Tarde</button>
+            <button className={styles.botao_criar_projeto} type="button" onClick={() => navigate('/projetos/criar')} value="cadastrar-projeto"> <AddIcon />Criar Projeto</button>
+            <button className={styles.botao_criar_projeto_depois} type="button" onClick={() => navigate('/inicio')} value="cadastrar-projeto-depois">Cadastrar Mais Tarde</button>
           </div>
         </div>
       </div>
