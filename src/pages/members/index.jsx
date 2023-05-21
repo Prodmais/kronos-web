@@ -52,6 +52,7 @@ const Members = () => {
 
 
     useLayoutEffect(() => {
+        console.log("MENU ITEM", menuItems)
         if(menuItems.projectId){
             projectService.getOneProjects(menuItems.projectId).then(response => {
                 const memberList = response.UsersIntegrated.map(userData => {

@@ -21,13 +21,13 @@ const Menu = ({ id }) => {
 
     useEffect(() => {
         console.log(menuItems);
-        dispatch(setMenuItems([
-            {
-                title: 'Página inicial',
-                path: '',
-                icon: ''
-            }
-        ]))
+        // dispatch(setMenuItems([
+        //     {
+        //         title: 'Página inicial',
+        //         path: '',
+        //         icon: ''
+        //     }
+        // ]))
     }, []);
 
     function handleToggleMenu() {
