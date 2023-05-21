@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import NoProjects from "../NoProjects";
 import { Box, CircularProgress } from "@mui/material";
 import { ProjectsService } from "../../services/projects-service";
+import { setMenuItems } from "../../store/slices/menu-items.slice";
+import { useDispatch } from "react-redux";
 
 
 const ListProjects = () => {
@@ -14,6 +16,7 @@ const ListProjects = () => {
     const [projects, setProjects] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
@@ -50,47 +53,52 @@ const ListProjects = () => {
                 </Button>
             </header>
 
-            
 
-            { isLoading ? 
-                <Box sx={{ 
+
+            {isLoading ?
+                <Box sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    width: '100%', 
-                    height: '100%' ,
-                    background: 'transparent', 
+                    width: '100%',
+                    height: '100%',
+                    background: 'transparent',
                 }}>
                     <CircularProgress sx={{
                         color: '#FFF',
-                    }}/>
-                </Box> 
-                : projects.length ? 
-                <div className={styles.list_container}>
-                    <ul>
-                        { projects.map(project => (
-                            <li className={styles.card_list} key={project.id} >
-                                <button onClick={() => navigate(`/quadros/${project.id}`)}>
-                                    <div className={styles.informations}>
+                    }} />
+                </Box>
+                : projects.length ?
+                    <div className={styles.list_container}>
+                        <ul>
+                            {projects.map(project => (
+                                <li className={styles.card_list} key={project.id} >
+                                    <button onClick={() => {
+                                        navigate(`/quadros/${project.id}`)
+                                        dispatch(setMenuItems({
+                                            projectId: project.id
+                                        }))
+                                    }}>
+                                        <div className={styles.informations}>
 
-                                        <h2>{project.title}</h2>
-                                        <p className={styles.description} >
-                                            {project.description}
+                                            <h2>{project.title}</h2>
+                                            <p className={styles.description} >
+                                                {project.description}
+                                            </p>
+                                        </div>
+                                        <p className={styles.last_update}>
+                                            <span>Útima atualização</span>
+                                            <span>08/05/2002</span>
                                         </p>
-                                    </div>
-                                    <p className={styles.last_update}>
-                                        <span>Útima atualização</span>
-                                        <span>08/05/2002</span>
-                                    </p>
-                                </button>
-                            </li>
-                        )) }
-                    </ul>
-                </div> :  <NoProjects />
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div> : <NoProjects />
 
             }
-            
-            
+
+
         </>
 
     )

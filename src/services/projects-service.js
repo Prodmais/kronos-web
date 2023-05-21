@@ -11,4 +11,9 @@ export class ProjectsService {
         const projects = (await api.get('project')).data
         return projects;
     }
+
+    async getOneProjects (id) {
+        const project = (await api.get('project/' + id)).data
+        return project;
+    }
 }

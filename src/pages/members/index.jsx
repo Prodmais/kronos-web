@@ -1,13 +1,18 @@
 import Box from '@mui/material/Box';
 import styles from './members.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Avatar } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { ProjectsService } from '../../services/projects-service';
+import { useSelector } from 'react-redux';
 
 const Members = () => {
 
     const [members, setMembers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const menuItems = useSelector((state) => state.menuItem.items)
+    const projectService = new ProjectsService();
 
     function stringToColor(string) {
         let hash = 0;
@@ -46,37 +51,23 @@ const Members = () => {
       }
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        if(menuItems.projectId){
+            projectService.getOneProjects(menuItems.projectId).then(response => {
+                const memberList = response.UsersIntegrated.map(userData => {
+                    const data = {
+                        name: userData.Users.name,
+                        lastName: userData.Users.lastName,
+                        email: userData.Users.email
+                    };
+                    return data;
+                });
 
-        const membersMock = [
-            {
-                name: 'João',
-                lastName: 'Wezen',
-                email: 'joaowezen21@gmail.com'
-            },
-            {
-                name: 'Luiz',
-                lastName: 'Andrade',
-                email: 'luizvictor1231@gmail.com'
-            },
-            {
-                name: 'Luís',
-                lastName: 'Eduardo',
-                email: 'luisedu123@gmail.com'
-            },
-            {
-                name: 'Affonso',
-                lastName: 'Ruiz',
-                email: 'affonsoruiz231@gmail.com'
-            },
-        ]
-
-        setMembers(membersMock);
-
-        setTimeout(() => setIsLoading(false), 1000);
-
+                setMembers([...memberList]);
+            });
+            setIsLoading(false);
+        }
     }, []);
-
 
     return (
         <section className={styles.members_section}>
