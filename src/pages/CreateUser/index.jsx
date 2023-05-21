@@ -26,6 +26,8 @@ export default function CreateUser() {
     const emailRegex = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
     const passwordRegex = new RegExp(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/);
 
+    const authenticateService = new AuthenticateService();
+
     const navigate = useNavigate();
 
     const handleSubimit = (event) => {
@@ -40,9 +42,9 @@ export default function CreateUser() {
             email,
             password
         }).then(response => {
-            setToken({ token: response.data.token });
+            authenticateService.setToken({ token: response.data.token });
 
-            navigate('/primeiro');
+            navigate('/projetos/primeiro');
         }).catch(erro => {
             enqueueSnackbar('Falha ao cadastrar usuário.', {
                 variant: 'error'
