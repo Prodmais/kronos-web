@@ -4,7 +4,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { Logout } from '@mui/icons-material';
 import cronosLogo from '../../assets/logo_cronos.png';
 import logo from '../../assets/logo_cronos.png';
@@ -17,16 +17,17 @@ const Menu = ({ id }) => {
     const navigate = useNavigate();
     const menuItems = useSelector((state) => state.menuItem.items)
     const dispatch = useDispatch()
+    const localtion = useLocation()
 
     useEffect(() => {
         console.log(menuItems);
-        dispatch(setMenuItems([
-            {
-                title: 'Página inicial',
-                path: '',
-                icon: ''
-            }
-        ]))
+        // dispatch(setMenuItems([
+        //     {
+        //         title: 'Página inicial',
+        //         path: '',
+        //         icon: ''
+        //     }
+        // ]))
     }, []);
 
     function handleToggleMenu() {
@@ -45,10 +46,10 @@ const Menu = ({ id }) => {
 
     return (
         <aside className={styles.menu_aside}>
-            <ul className={ toggleMenu ? styles.open_menu : '' } >
+            <ul className={toggleMenu ? styles.open_menu : ''} >
 
                 <li>
-                    <button className={ toggleMenu ? styles.flip_x_1 : '' } onClick={handleToggleMenu}>
+                    <button className={toggleMenu ? styles.flip_x_1 : ''} onClick={handleToggleMenu}>
                         <KeyboardDoubleArrowRightIcon />
                     </button>
                 </li>
@@ -67,22 +68,22 @@ const Menu = ({ id }) => {
                     </button>
                 </li>
 
-                {/* <li>
+                { (localtion.pathname.includes('quadros') || localtion.pathname.includes('membros')) && (<li>
                     <button onClick={() => goTo('membros')}>
                         <GroupIcon />
                         Membros
                     </button>
-                </li> */}
+                </li>)}
             </ul>
             <span className={styles.fadeIn}></span>
             <div className={styles.logo_cronos}>
-                    <div className={styles.logout_button}>
-                        <button onClick={logout}>
-                            <Logout />
-                            Sair
-                        </button>
-                    </div>
-                    <img width={50} src={logo} alt="Logo Cronos" />
+                <div className={styles.logout_button}>
+                    <button onClick={logout}>
+                        <Logout />
+                        Sair
+                    </button>
+                </div>
+                <img width={50} src={logo} alt="Logo Cronos" />
             </div>
         </aside>
     );

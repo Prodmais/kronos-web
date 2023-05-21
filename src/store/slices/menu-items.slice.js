@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: []
+  items: {
+    projectId: null
+  }
 };
 
 export const menuItemSlice = createSlice({
@@ -12,7 +14,7 @@ export const menuItemSlice = createSlice({
 
       state = {
         ...state,
-        items: [...action.payload]
+        items: action.payload
       }
 
       return state;
