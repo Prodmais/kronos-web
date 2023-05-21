@@ -26,8 +26,6 @@ export default function CreateUser() {
     const emailRegex = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
     const passwordRegex = new RegExp(/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/);
 
-    const authenticateService = new AuthenticateService();
-
     const navigate = useNavigate();
 
     const handleSubimit = (event) => {
