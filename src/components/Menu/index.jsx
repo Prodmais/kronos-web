@@ -5,7 +5,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Logout } from '@mui/icons-material';
+import { Assessment, Logout } from '@mui/icons-material';
 import cronosLogo from '../../assets/logo_cronos.png';
 import logo from '../../assets/logo_cronos.png';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,6 +67,13 @@ const Menu = ({ id }) => {
                         Projetos
                     </button>
                 </li>
+
+                {(localtion.pathname.includes('quadros') || localtion.pathname.includes('membros')) && (<li>
+                    <button onClick={() => goTo('/quadros/' + menuItems.projectId)}>
+                        <Assessment />
+                        Quadros
+                    </button>
+                </li>)}
 
                 { (localtion.pathname.includes('quadros') || localtion.pathname.includes('membros')) && (<li>
                     <button onClick={() => goTo('membros')}>
