@@ -19,10 +19,12 @@
     grid-column-start: 1;
     grid-column-end: 3;
     height: min-content;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .members_section header .title h1 {
-
+    text-align: start;
     align-self: flex-start;
 
     color: #043434;
@@ -80,5 +82,7 @@
     .members_section .title {
         grid-column-start: 1;
         grid-column-end: 2;
+        display: flex;
+        flex-wrap: wrap;
     }
 }

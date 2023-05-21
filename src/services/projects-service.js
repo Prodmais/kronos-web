@@ -6,7 +6,7 @@ export class ProjectsService {
         this.authService = new AuthenticateService();
     }
 
-    async getAllProjects () {
+    async getAllProjects() {
 
         const projects = (await api.get('project')).data
         return projects;
@@ -28,6 +28,19 @@ export class ProjectsService {
         } catch (error) {
             console.error(error);
             throw new Error(error);
+        }
+    }
+
+    async getOneProjects(id) {
+        const project = (await api.get('project/' + id)).data
+        return project;
+    }
+
+    async sendInvite(id, email) {
+        try {
+            await api.post('/project/invite/' + id, { email: email });
+        } catch (err) {
+            throw new Error(err);
         }
     }
 }
