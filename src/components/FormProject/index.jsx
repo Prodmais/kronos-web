@@ -21,6 +21,9 @@ export default function FormProject({ onNextAction, onBackAction }) {
             title: name,
             description: description,
         }).then(response => {
+            enqueueSnackbar('Projeto criado com sucesso!', {
+                variant: 'success'
+            });
             onNextAction();
         }).catch(error => {
             enqueueSnackbar('Falha ao criar o projeto!', {
