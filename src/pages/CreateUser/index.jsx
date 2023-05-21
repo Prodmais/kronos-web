@@ -43,7 +43,7 @@ export default function CreateUser() {
         }).then(response => {
             authenticateService.setToken({ token: response.data.token });
 
-            navigate('/primeiro');
+            navigate('/projetos/primeiro');
         }).catch(erro => {
             enqueueSnackbar('Falha ao cadastrar usuário.', {
                 variant: 'error'
