@@ -34,6 +34,15 @@ const ListProjects = () => {
 
     const navigate = useNavigate();
 
+    function ISODateToLocaleDate(ISODate) {
+        let date = ISODate.split('T')[0].split('-')
+        const yearTemp = date[0];
+        date[0] = date[2];
+        date[2] = yearTemp;
+
+        return date.join('/');
+    }
+
     return (
         <>
             <header>
@@ -88,7 +97,11 @@ const ListProjects = () => {
                                         </div>
                                         <p className={styles.last_update}>
                                             <span>Útima atualização</span>
-                                            <span>08/05/2002</span>
+                                            <span>
+                                                {
+                                                    ISODateToLocaleDate(project.updatedAt)
+                                                }
+                                            </span>
                                         </p>
                                     </button>
                                 </li>

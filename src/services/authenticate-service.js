@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import api from '../api';
+import api, { loginRequest } from '../api';
 
 export class AuthenticateService {
 
@@ -9,10 +9,15 @@ export class AuthenticateService {
     async authentication({ email, password }) {
         try {
 
-            const login = await api.post('/auth/signin', {
+            const login = await loginRequest.post('', {
                 email,
                 password
             });
+
+            localStorage.setItem('token', login.data.token);
+            const token = localStorage.getItem('token');
+            api.defaults.headers.Authorization = 'Bearer ' + token;
+
             return login;
         } catch (error) {
             console.error(error);
@@ -35,6 +40,7 @@ export class AuthenticateService {
     };
 
     setToken({ token }) {
+        localStorage.removeItem('token');
         localStorage.setItem('token', token);
     }
 
@@ -47,6 +53,7 @@ export class AuthenticateService {
     }
 
     logout() {
+        api.defaults.headers.Authorization = undefined;
         localStorage.removeItem('token');
         this.navigate('/auth');
     }

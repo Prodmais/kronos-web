@@ -21,13 +21,6 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [alert, setAlert] = useState({
-    message: '',
-    severity: 'success',
-    horizontal: 'center',
-    vertical: 'top',
-  });
-
   const authenticateService = new AuthenticateService();
 
   const navigate = useNavigate();

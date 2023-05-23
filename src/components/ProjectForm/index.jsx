@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
 import { ProjectsService } from '../../services/projects-service';
 
-export default function FormProject({ onNextAction, onBackAction }) {
+export default function ProjectForm({ onNextAction, onBackAction }) {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
