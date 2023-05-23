@@ -5,14 +5,14 @@ import './App.css';
 
 import AuthGuardRoute from './guard/auth-guard';
 import PrivateGuardRoute from './guard/private-guard';
-import Boards from './pages/Boards';
+import Boards from './pages/boards';
 import CreateProject from './pages/CreateProject';
 import CreateUser from './pages/CreateUser';
 import InitialPage from './pages/InitialPage';
 import ListProjects from './pages/ListProjects';
-import Login from './pages/Login';
-import Main from './pages/Main';
-import Members from './pages/Members';
+import Login from './pages/login';
+import Main from './pages/main';
+import Members from './pages/members';
 import MessageCreateProject from './pages/MessageCreateProject';
 
 function App() {
