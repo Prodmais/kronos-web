@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import loginSVG from '../../assets/login.svg';
 import logo from '../../assets/logo_cronos.png';
 import styles from './login.module.css';
@@ -6,11 +6,11 @@ import styles from './login.module.css';
 //importações do material ui
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import { Alert, Box, CircularProgress, Snackbar } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthenticateService } from '../../services/authenticate-service';
-import { enqueueSnackbar } from 'notistack';
 
 const Login = () => {
 
@@ -30,30 +30,7 @@ const Login = () => {
 
   const authenticateService = new AuthenticateService();
 
-  const [open, setOpen] = useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
   const navigate = useNavigate();
-
-  function addAlert({ message, severity, horizontal, vertical }) {
-
-    setOpen(true);
-    setAlert({
-      message,
-      severity: severity || 'success',
-      horizontal: horizontal || 'center',
-      vertical: vertical || 'top'
-    });
-
-
-  }
 
   function handleEmail(event) {
     setUser({ ...user, email: event.target.value });
@@ -83,15 +60,6 @@ const Login = () => {
       })
       .catch(error => {
 
-        // addAlert({
-        //   message: 'Email ou senha inválidos',
-        //   severity: 'error'
-        // });
-
-        // setTimeout(() => {
-        //   setOpen(false);
-        // }, 2000)
-
         enqueueSnackbar('Email ou senha inválidos', {
           variant: 'error'
         });
@@ -105,16 +73,6 @@ const Login = () => {
 
   return (
     <section className={styles.login_section}>
-      {/* 
-      <Snackbar
-        autoHideDuration={2000}
-        open={open}
-        anchorOrigin={{ vertical: alert.vertical, horizontal: alert.horizontal }}
-      >
-        <Alert severity={ alert.severity } sx={{ width: '100%' }}>
-          { alert.message  }
-        </Alert>
-      </Snackbar> */}
 
       <div className={styles.center}>
         <div className={styles.logo}>

@@ -1,7 +1,9 @@
 .boards_section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
+    height: 100%;
     color: #0c46464d;
 
     overflow-y: auto;

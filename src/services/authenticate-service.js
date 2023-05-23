@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router';
 import api from '../api';
 
 export class AuthenticateService {
 
     constructor() {}
+    navigate = useNavigate();
 
     async authentication({ email, password }) {
         try {
@@ -42,5 +44,10 @@ export class AuthenticateService {
             return null;
         }
         return localToken;
+    }
+
+    logout() {
+        localStorage.removeItem('token');
+        this.navigate('/auth');
     }
 }

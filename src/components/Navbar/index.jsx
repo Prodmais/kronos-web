@@ -3,9 +3,11 @@ import styles from './navbar.module.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Avatar from '@mui/material/Avatar';
 import { Menu, MenuItem } from '@mui/material';
+import { AuthenticateService } from '../../services/authenticate-service';
 
 const Navbar = () => {
 
+    const authenticateService = new AuthenticateService();
     const [user, setUser] = useState({
         name: 'Luiz Victor'
     });
@@ -76,8 +78,7 @@ const Navbar = () => {
                 'aria-labelledby': 'button',
                 }}
             >
-                <MenuItem onClick={() => handleClose('profile')}>Perfil</MenuItem>
-                <MenuItem onClick={() => handleClose('logout')}>Sair</MenuItem>
+                <MenuItem onClick={() => authenticateService.logout()}>Sair</MenuItem>
             </Menu>
 
         </nav>

@@ -22,3 +22,29 @@
     font-size: 1.5em;
     font-weight: 600;
 }
+
+.task_actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+.task_actions button {
+    border-radius: 8px;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid #7c7c7c;
+    outline-color: #7c7c7c;
+}
+
+.task_actions .edit {
+    /* border: 1px solid green; */
+    /* outline-color: green; */
+}
+
+.task_actions .delete {
+    /* border: 1px solid red; */
+    /* outline-color: red; */
+
+}

@@ -121,11 +121,15 @@ export default function CreateUser() {
                 {/* Input Data Nascimento */}
                 <label className={styles.background_signup_label}>Data de nascimento:</label>
                 <div className={styles.background_signup_container}>
-                    <input type='date' value={date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)} onChange={(e) => {
-                        const newDate = new Date(e.target.value);
-                        newDate.setDate(Number(e.target.value.slice(-2)));
-                        setDate(newDate);
-                    }} name="birthday" className={styles.background_signup_input} placeholder='25/05/2023' />
+                    <input 
+                        type='date' 
+                        value={date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)}
+                        onChange={(e) => {
+                            const newDate = new Date(e.target.value);
+                            newDate.setDate(Number(e.target.value.slice(-2)));
+                            setDate(newDate);
+                        }} 
+                        name="birthday" className={styles.background_signup_input} placeholder='25/05/2023' />
                 </div>
 
                 {/* Input Categoria */}

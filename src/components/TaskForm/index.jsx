@@ -1,26 +1,62 @@
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 import styles from "./task-form.module.css";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
+import InputError from "../InputError";
 
-const TaskForm = ({ boards, users, handleSubmit }) => {
+const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", boards, users, handleSubmit, editableTask }) => {
 
-  const [task, setTask] = useState({
+  const [task, setTask] = useState(editableTask ? {
+    ...editableTask,
+    endDate: new Date(editableTask.endDate.split('T')[0])
+
+  } : {
     name: '',
     description: '',
-    endDate: null,
+    endDate: new Date(),
     boardId: boards[0].id,
-    ownerId: -1,
+    ownerId: users[0]?.id ?? 0,
   });
+  const [isValidEndDate, setIsValidEndDate] = useState(true);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [endDate, setEndDate] = useState(new Date());
 
   function onSubmit(event) {
     event.preventDefault();
+    setIsSubmit(true);
+
+    if (task.name.length < 4) {
+      enqueueSnackbar("Campo 'nome' está inválido.", {
+        variant: "error"
+      })
+      return;
+    }
+
+    console.log(task)
+
+    if (!checkEndDate(task.endDate)) {
+      enqueueSnackbar("Campo 'Data término' está inválido.", {
+        variant: "error"
+      })
+      return;
+    }
 
     handleSubmit(task);
   };
 
+  console.log(task)
+
+
+  function checkEndDate(date) {
+    const currentYear = new Date().getFullYear();
+    const yearSelected = date.getFullYear();
+
+    return yearSelected >= currentYear;
+  }
+
   function handleChange(event, key) {
-    setTask({ 
-      ...task, 
+    setTask({
+      ...task,
       [key]: event.target.value
     });
   }
@@ -30,48 +66,62 @@ const TaskForm = ({ boards, users, handleSubmit }) => {
       <div className={`${styles.area} ${styles.formContainer}`}>
         <div className={styles.form_div}>
           <form className={styles.formulario} onSubmit={onSubmit}>
-            <h5>CRIE SUA ATIVIDADE</h5>
-            
-            <input 
+            <h5>{title}</h5>
+
+            <input
               onChange={(e) => handleChange(e, 'name')}
-              type="text" 
-              placeholder="Nome da sua Atividade" 
-              className={styles.nameCamp} 
+              type="text"
+              value={task.name}
+              placeholder="Nome da sua Atividade"
+              className={styles.nameCamp}
             />
-            
-            <textarea 
+
+            <textarea
               onChange={(e) => handleChange(e, 'description')}
-              name="description" 
-              id="descriptionCamp" 
-              cols="30" 
-              rows="10" 
-              placeholder="Descrição" 
-              className={styles.textarea}>
+              value={task.description}
+              name="description"
+              id="descriptionCamp"
+              cols="30"
+              rows="10"
+              placeholder="Descrição"
+              className={`${styles.textarea}`}>
             </textarea>
-            
-            <input 
-              type="date" 
-              onChange={(e) => handleChange(e, 'endDate')}
-              placeholder="Finaliza em" 
-              className={styles.datepick} 
+
+            <input
+              type="date"
+              value={task.endDate.getFullYear() + "-" + ("0" + (task.endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + task.endDate.getDate()).slice(-2)}
+              onChange={(e) => {
+                const newDate = new Date(e.target.value);
+                newDate.setDate(Number(e.target.value.slice(-2)));
+                console.log(newDate);
+                setTask({
+                  ...task,
+                  endDate: newDate,
+                })
+                console.log(endDate);
+              }}
+              placeholder="Finaliza em"
+              className={`${styles.datepick}}`}
             />
-            
+            {(isSubmit && !isValidEndDate) && <InputError>A data de término está inválida.</InputError>}
+
             <FormControl sx={{
               margin: '0'
             }} fullWidth>
-              <InputLabel 
+              <InputLabel
                 sx={{
-                  top: '-10px'
+                  top: '0px',
+                  left: '-5px',
                 }}
                 onChange={handleChange}
-                id="Boardslabel">
-                  Quadro
+                id="boardsLabel">
+                Quadro
               </InputLabel>
               <Select
                 sx={{
                   height: '40px'
                 }}
-                labelId="Boardslabel"
+                labelId="boardsLabel"
                 id="demo-simple-select"
                 value={task.boardId}
                 label="Quadro"
@@ -80,38 +130,43 @@ const TaskForm = ({ boards, users, handleSubmit }) => {
                 {
                   boards.length ? boards.map(board => (
                     <MenuItem key={board.id} value={board.id}>{board.name}</MenuItem>
-                  )) 
-                  : null
+                  ))
+                    : null
                 }
               </Select>
             </FormControl>
 
             <FormControl fullWidth>
-              <InputLabel 
+              <InputLabel
+                sx={{
+                  left: '-5px',
+                  backgroundColor: '#FFFFFF',
+                  paddingRight: '10px',
+                }}
                 onChange={handleChange}
-                id="Boardslabel">
-                  Atribuir à
+                id="userLabel">
+                Atribuir à
               </InputLabel>
               <Select
                 sx={{
                   height: '40px'
                 }}
-                labelId="Boardslabel"
+                labelId="userLabel"
                 id="demo-simple-select"
-                value={task.name}
+                value={task.ownerId}
                 label="Quadro"
-                onChange={(e) => handleChange(e, 'boardId')}
+                onChange={(e) => handleChange(e, 'ownerId')}
               >
                 {
                   users.length ? users.map(user => (
-                    <MenuItem key={user.id} value={user.id}>{user.name}</MenuItem>
-                  )) 
-                  : null
+                    <MenuItem key={user.id} value={user.id}>{user.Users.name}</MenuItem>
+                  ))
+                    : null
                 }
               </Select>
             </FormControl>
 
-            <button type="submit" className={styles.submitBtn}><p>Criar tarefa</p></button>
+            <button type="submit" className={styles.submitBtn}><p>{buttonText}</p></button>
           </form>
         </div>
       </div>
