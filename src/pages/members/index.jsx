@@ -87,9 +87,11 @@ const Members = () => {
                 });
 
                 setMembers([...memberList]);
+                console.log(members)
             });
             setIsLoading(false);
         }
+
     }, []);
 
     const handleSendEmail = (event) => {
@@ -218,7 +220,7 @@ const Members = () => {
                             }}
                         >
                             <div className={styles.image_container}>
-                                <Avatar {...stringAvatar(`${member.name} ${member.lastName}`)} />
+                                <Avatar {...stringAvatar(`${member.name.split(' ')[0]} ${member.lastName}`)} />
                             </div>
                             <div className={styles.member_info}>
                                 <p>Nome: <span>{member.name}</span></p>

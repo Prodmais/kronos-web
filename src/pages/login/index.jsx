@@ -11,6 +11,10 @@ import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthenticateService } from '../../services/authenticate-service';
+import { useDispatch } from 'react-redux';
+import { setUserAuthentication } from '../../store/slices/auth.slice';
+import { UserService } from '../../services/user-service';
+import { setLoadingSystem } from '../../store/slices/system.slice';
 
 const Login = () => {
 
@@ -22,8 +26,11 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const authenticateService = new AuthenticateService();
+  const userService = new UserService();
+
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleEmail(event) {
     setUser({ ...user, email: event.target.value });
@@ -34,19 +41,48 @@ const Login = () => {
   }
 
   function handleSubmit(event) {
-
     event.preventDefault();
-
+    
+    dispatch(setLoadingSystem(true))
     setIsLoading(true);
+    console.log('login')
 
     authenticateService.authentication({
       email: user.email,
       password: user.password
     })
       .then(response => {
-        console.log(response);
-
         authenticateService.setToken({ token: response.data.token });
+
+        userService.getUser()
+          .then((user) => {
+
+            console.log(user);
+
+            dispatch(setUserAuthentication({
+              user: {
+                id: user.id,
+                name: user.name,
+                lastName: user.lastName,
+                email: user.email,
+                phone: user.phone
+              },
+              isAuthenticated: true,
+
+              token: authenticateService.getToken()
+            }))
+
+          })
+          .catch(error => {
+            enqueueSnackbar('Houve um error ao obter informações do usuário', {
+              variant: 'error'
+            });
+          })
+          .finally(() => {
+            setTimeout(() => {
+              dispatch(setLoadingSystem(false));
+            }, 1000)
+          })
 
         navigate('/inicio');
 

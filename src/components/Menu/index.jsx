@@ -16,19 +16,7 @@ const Menu = ({ id }) => {
     const [toggleMenu, setToggleMenu] = useState(true);
     const navigate = useNavigate();
     const menuItems = useSelector((state) => state.menuItem.items)
-    const dispatch = useDispatch()
-    const localtion = useLocation()
-
-    useEffect(() => {
-        console.log(menuItems);
-        // dispatch(setMenuItems([
-        //     {
-        //         title: 'Página inicial',
-        //         path: '',
-        //         icon: ''
-        //     }
-        // ]))
-    }, []);
+    const location = useLocation()
 
     function handleToggleMenu() {
 
@@ -68,14 +56,14 @@ const Menu = ({ id }) => {
                     </button>
                 </li>
 
-                {(localtion.pathname.includes('quadros') || localtion.pathname.includes('membros')) && (<li>
+                {(location.pathname.includes('quadros') || location.pathname.includes('membros')) && (<li>
                     <button onClick={() => goTo('/quadros/' + menuItems.projectId)}>
                         <Assessment />
                         Quadros
                     </button>
                 </li>)}
 
-                { (localtion.pathname.includes('quadros') || localtion.pathname.includes('membros')) && (<li>
+                { (location.pathname.includes('quadros') || location.pathname.includes('membros')) && (<li>
                     <button onClick={() => goTo('membros')}>
                         <GroupIcon />
                         Membros

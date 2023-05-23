@@ -4,6 +4,8 @@ import authReducer from './slices/auth.slice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
+import systemReducer from './slices/system.slice';
+import navbarReducer from './slices/navbar.slice';
 
 const persistConfig = {
     key: 'root',
@@ -12,7 +14,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    menuItem: menuItemReducer
+    menuItem: menuItemReducer,
+    system: systemReducer,
+    navbar: navbarReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

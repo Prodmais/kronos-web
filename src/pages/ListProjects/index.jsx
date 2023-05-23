@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import styles from './list-projects.module.css';
-import Button from "@mui/material/Button";
-import NoProjects from "../NoProjects";
 import { Box, CircularProgress } from "@mui/material";
+import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { ProjectsService } from "../../services/projects-service";
 import { setMenuItems } from "../../store/slices/menu-items.slice";
-import { useDispatch } from "react-redux";
+import NoProjects from "../NoProjects";
+import styles from './list-projects.module.css';
 
 
 const ListProjects = () => {
@@ -25,11 +25,10 @@ const ListProjects = () => {
                 setProjects([]);
                 setProjects([...projects]);
 
-                setIsLoading(false)
-
-                console.log([...projects]);
+                setTimeout(() => setIsLoading(false), 500);
             })
             .catch(error => console.error(error));
+
     }, [])
 
     const navigate = useNavigate();

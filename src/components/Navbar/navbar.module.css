@@ -1,15 +1,19 @@
 .navbar {
 
     display: flex;
+    align-items: center;
     justify-content: flex-end;
 
     padding: 10px 20px;
 
-    /* width: calc(100vw - 200px); */
-    width: calc(100% - 20px);
+    width: calc(100% - 0px);
     min-height: 80px;
 
     background-color: transparent;
+}
+
+.navbar h2 {
+    width: 100%;
 }
 
 .navbar button {
@@ -37,4 +41,18 @@
 
 .navbar button .avatar_container {
     display: flex;
+}
+
+@media (max-width: 662px) {
+
+    .navbar {
+        gap: 20px;
+        flex-direction: column-reverse;
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+
+    .navbar h2 {
+        width: auto;
+    }
 }

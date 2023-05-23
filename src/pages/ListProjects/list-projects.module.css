@@ -91,9 +91,17 @@ header .new_project_button {
 
 }
 
+.list_container ul  .card_list button .informations {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 .list_container ul  .card_list button .informations p {
     width: 100%;
     color: #4F4F4F;
+    text-align: start;
 
 }
 

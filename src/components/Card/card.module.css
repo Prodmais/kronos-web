@@ -23,6 +23,12 @@
     font-weight: 600;
 }
 
+.card_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .task_actions {
     display: flex;
     align-items: center;

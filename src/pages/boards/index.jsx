@@ -1,4 +1,3 @@
-// import styles from "../../components/cardO/card-o.module.css";
 import { Add } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, Dialog, DialogContent } from '@mui/material';
@@ -11,6 +10,8 @@ import TaskForm from '../../components/TaskForm';
 import { ProjectsService } from '../../services/projects-service';
 import { TasksService } from '../../services/task-service';
 import { enqueueSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import { setProjectNameNavbar } from '../../store/slices/navbar.slice';
 
 const Boards = () => {
 
@@ -18,6 +19,7 @@ const Boards = () => {
   const projectsService = new ProjectsService();
   const tasksService = new TasksService();
   const [boards, setBoards] = useState([]);
+  const [filterBoards, setFilterBoards] = useState([]);
   const [project, setProject] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openCreateTask, setOpenCreateTask] = useState(false);
@@ -29,9 +31,23 @@ const Boards = () => {
   const [isLoadingActionTask, setIsLoadingActionTask] = useState(false);
   const [reloadBoards, setReloadBoards] = useState(false);
 
+  const dispatch = useDispatch();
+
   const { id } = useParams();
 
-  function search(value) { }
+  function search(value) {
+    const boardsFilteds = boards.map(board => {
+      const FilterBoard = {
+        ...board,
+        Tasks: board.Tasks.filter(task => task.name.toLowerCase().includes(value.toLowerCase()))
+      }
+
+      return FilterBoard;
+    })
+
+    setFilterBoards([...boardsFilteds]);
+
+  }
 
   useEffect(() => {
 
@@ -39,15 +55,18 @@ const Boards = () => {
       boardsService.getAllboardsByProject(id)
         .then((boards) => {
           setBoards(boards);
+          setFilterBoards(boards);
         }),
       projectsService.getOneProject(id)
         .then(project => {
           setProject(project);
+          dispatch(setProjectNameNavbar(project.title))
           console.log(project)
         })
     ]).then(() => {
       setIsLoading(false);
     })
+
   }, [reloadBoards]);
 
   function createTask(task) {
@@ -249,7 +268,7 @@ const Boards = () => {
             <header>
               <div className={styles.sort_options}>
                 <div className={styles.input_search}>
-                  <input placeholder='Pesquisar por atividade' type="text" />
+                  <input onChange={(e) => search(e.target.value)} placeholder='Pesquisar por atividade' type="text" />
                   <SearchIcon />
                 </div>
 
@@ -281,7 +300,7 @@ const Boards = () => {
 
             <div className={styles.boards_container}>
               {
-                boards.length ? boards.map(board => (
+                filterBoards.length ? filterBoards.map(board => (
                   <BoardCard
                     openDeleteTask={(task) => handleDeleteTask(task)} // Em breve ajeitar todos os props-drilling
                     openEditTask={(task) => handleEditTask(task)} // Em breve ajeitar todos os props-drilling

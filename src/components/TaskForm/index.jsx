@@ -32,8 +32,6 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
       return;
     }
 
-    console.log(task)
-
     if (!checkEndDate(task.endDate)) {
       enqueueSnackbar("Campo 'Data término' está inválido.", {
         variant: "error"
@@ -43,8 +41,6 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
 
     handleSubmit(task);
   };
-
-  console.log(task)
 
 
   function checkEndDate(date) {
@@ -74,6 +70,7 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
               value={task.name}
               placeholder="Nome da sua Atividade"
               className={styles.nameCamp}
+              maxLength={40}
             />
 
             <textarea
@@ -84,21 +81,22 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
               cols="30"
               rows="10"
               placeholder="Descrição"
+              maxLength={255}
               className={`${styles.textarea}`}>
+            
             </textarea>
 
             <input
+              id="datepicker"
               type="date"
               value={task.endDate.getFullYear() + "-" + ("0" + (task.endDate.getMonth() + 1)).slice(-2) + "-" + ("0" + task.endDate.getDate()).slice(-2)}
               onChange={(e) => {
                 const newDate = new Date(e.target.value);
                 newDate.setDate(Number(e.target.value.slice(-2)));
-                console.log(newDate);
                 setTask({
                   ...task,
                   endDate: newDate,
                 })
-                console.log(endDate);
               }}
               placeholder="Finaliza em"
               className={`${styles.datepick}}`}

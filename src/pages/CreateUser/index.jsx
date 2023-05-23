@@ -9,6 +9,11 @@ import { useNavigate } from 'react-router';
 import { enqueueSnackbar } from 'notistack';
 import InputError from '../../components/InputError';
 import classNames from 'classnames';
+import { UserService } from '../../services/user-service';
+import { useDispatch } from 'react-redux';
+import { setUserAuthentication } from '../../store/slices/auth.slice';
+import { setLoadingSystem } from '../../store/slices/system.slice';
+import { clearUserAuthentication } from '../../store/slices/auth.slice';
 
 export default function CreateUser() {
 
@@ -20,6 +25,8 @@ export default function CreateUser() {
     const [category, setCategory] = useState('school');
     const [isSubmit, setIsSubmit] = useState(false);
     const authenticateService = new AuthenticateService();
+    const userService = new UserService();
+    const dispatch = useDispatch();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -41,6 +48,39 @@ export default function CreateUser() {
             password
         }).then(response => {
             authenticateService.setToken({ token: response.data.token });
+            dispatch(setLoadingSystem(true));
+
+            userService.getUser()
+                .then((user) => {
+
+                    console.log(user);
+
+                    dispatch(setUserAuthentication({
+                        user: {
+                            id: user.id,
+                            name: user.name,
+                            lastName: user.lastName,
+                            email: user.email,
+                            phone: user.phone
+                        },
+                        isAuthenticated: true,
+                        token: authenticateService.getToken()
+                    }))
+
+                    dispatch(setLoadingSystem(false));
+
+                })
+                .catch(error => {
+                    localStorage.removeItem('token');
+                    dispatch(clearUserAuthentication());
+                    navigate('/auth');
+                    enqueueSnackbar('Houve um error ao obter informações do usuário', {
+                        variant: 'error'
+                    });
+
+                    console.error(error);
+                })
+
 
             navigate('/projetos/primeiro');
         }).catch(erro => {
@@ -121,14 +161,14 @@ export default function CreateUser() {
                 {/* Input Data Nascimento */}
                 <label className={styles.background_signup_label}>Data de nascimento:</label>
                 <div className={styles.background_signup_container}>
-                    <input 
-                        type='date' 
+                    <input
+                        type='date'
                         value={date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)}
                         onChange={(e) => {
                             const newDate = new Date(e.target.value);
                             newDate.setDate(Number(e.target.value.slice(-2)));
                             setDate(newDate);
-                        }} 
+                        }}
                         name="birthday" className={styles.background_signup_input} placeholder='25/05/2023' />
                 </div>
 

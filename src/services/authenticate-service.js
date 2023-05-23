@@ -1,10 +1,14 @@
+import jwt from 'jwt-decode';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import api, { loginRequest } from '../api';
+import { clearUserAuthentication } from '../store/slices/auth.slice';
 
 export class AuthenticateService {
 
     constructor() {}
     navigate = useNavigate();
+    dispatch = useDispatch();
 
     async authentication({ email, password }) {
         try {
@@ -13,10 +17,6 @@ export class AuthenticateService {
                 email,
                 password
             });
-
-            localStorage.setItem('token', login.data.token);
-            const token = localStorage.getItem('token');
-            api.defaults.headers.Authorization = 'Bearer ' + token;
 
             return login;
         } catch (error) {
@@ -40,8 +40,27 @@ export class AuthenticateService {
     };
 
     setToken({ token }) {
+
         localStorage.removeItem('token');
         localStorage.setItem('token', token);
+        api.defaults.headers.Authorization = 'Bearer ' + token;
+    }
+
+    decodeToken(token) {
+        if (!token) return null;
+
+        try {
+            const decodeToken = jwt(token);
+            return decodeToken;
+        } catch (error) {
+            return null
+        }
+    }
+
+    isValidToken(token) {
+        if (!token) return false;
+
+        return true;
     }
 
     getToken() {
@@ -53,6 +72,7 @@ export class AuthenticateService {
     }
 
     logout() {
+        this.dispatch(clearUserAuthentication())
         api.defaults.headers.Authorization = undefined;
         localStorage.removeItem('token');
         this.navigate('/auth');
