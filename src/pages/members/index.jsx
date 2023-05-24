@@ -35,6 +35,7 @@ const Members = () => {
 
     const handleClose = () => {
         setOpen(false);
+        setIsSubmit(false);
     };
 
     function stringToColor(string) {
@@ -112,6 +113,7 @@ const Members = () => {
 
         setEmail('');
         handleClose();
+        setIsSubmit(false);
     };
 
     return (
