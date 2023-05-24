@@ -2,7 +2,7 @@ import styles from './create-user.module.css';
 import EmailIcon from '@mui/icons-material/Email';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Lock from '@mui/icons-material/Lock';
-import { Button } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import { useState } from 'react';
 import { AuthenticateService } from '../../services/authenticate-service';
 import { useNavigate } from 'react-router';
@@ -80,6 +80,9 @@ export default function CreateUser() {
 
                     console.error(error);
                 })
+                .finally(() => {
+                    setIsLoading(false);
+                });
 
 
             navigate('/projetos/primeiro');
@@ -204,7 +207,7 @@ export default function CreateUser() {
                     Ao clicar em Cadastre-se, você concorda com nossos <a className={styles.background_signup_span_link} href='#'>Termos, Política de Privacidade e Política de Cookies.</a> Você poderá receber notificações por SMS e cancelar isso quando quiser.
                 </span>
 
-                <Button type='submit' sx={{
+                <Button disabled={isLoading} type='submit' sx={{
                     color: 'white',
                     borderColor: 'white',
                     margin: 2,
@@ -212,7 +215,24 @@ export default function CreateUser() {
                         borderColor: 'white',
                         backgroundColor: 'rgba(255,255,255,0.2)'
                     }
-                }} variant="outlined">Cadastre-se</Button>
+                }} variant="outlined">
+                    {
+                        isLoading ?
+                            <Box sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: '100%',
+                                height: '100%',
+                                background: 'transparent',
+                            }}>
+                                <CircularProgress size={24} sx={{
+                                    color: '#FFF',
+                                }} />
+                            </Box>
+                            : <span>Cadastre-se</span>
+                    }
+                </Button>
             </form>
         </div>
     );

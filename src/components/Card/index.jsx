@@ -42,10 +42,12 @@ const BoardCard = ({ title, tasks, openEditTask, openDeleteTask }) => {
       border: '1px solid #0c46464d',
       borderRadius: '10px',
       minWidth: 350,
+      maxWidth: 400,
       width: '100%',
       minHeight: 500,
       maxHeight: 800,
       position: 'relative',
+      overflow: 'hidden',
     }}>
 
       <CardHeader className={styles.card_header} title={title} >
@@ -66,112 +68,113 @@ const BoardCard = ({ title, tasks, openEditTask, openDeleteTask }) => {
         overflow: 'auto',
         height: 'calc(100% - 80px)',
       }} >
-        {tasks.length ? tasks.map(task => (
+        {
+          tasks.length ? tasks.map(task => (
 
-          <div key={task.id} style={{
-            backgroundColor: '#ffff',
-            padding: '20px',
-            borderRadius: 8,
-            maxheight: 260,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 15,
-          }}>
-            <Typography variant="h5" sx={{
+            <div key={task.id} style={{
+              backgroundColor: '#ffff',
+              padding: '20px',
+              borderRadius: 8,
+              maxheight: 260,
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              fontSize: 18,
-              fontWeight: 600,
-              maxHeight: '50px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }} component="div">
-              <span
-                style={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >{task.name}</span>
-              <div className={styles.task_actions}>
-                <button
-                  className={styles.edit}
-                  type='button'
-                  onClick={() => openEditTask(task)}
-                >
-                  <Edit sx={{
-                    color: '#7C7C7C',
-                    fontSize: '1em'
-                  }} />
-                </button>
-                <button
-                  className={styles.delete}
-                  type='button'
-                  onClick={() => openDeleteTask(task)}
-                >
-                  <Delete sx={{
-                    color: '#7C7C7C',
-                    fontSize: '1em'
-                  }} />
-                </button>
-              </div>
-            </Typography>
-
-            <Typography sx={{
-              mb: 1.5,
-              flexGrow: 0,
-              maxHeight: '220px',
-              overflowY: 'auto',
-              textOverflow: 'ellipsis'
-            }} color="#756966">
-              {task.description}
-            </Typography>
-
-            <div className={styles.card_footer}>
-              <Typography sx={{
+              flexDirection: 'column',
+              gap: 15,
+            }}>
+              <Typography variant="h5" sx={{
                 display: 'flex',
                 alignItems: 'center',
-                color: '#043434',
-                backgroundColor: '#058B8A4D',
-                width: 'max-content',
-                padding: '5px 10px',
-                borderRadius: '8px',
-                fontSize: '0.9em',
+                justifyContent: 'space-between',
+                fontSize: 18,
                 fontWeight: 600,
-                'p': {
-                  height: 'min-content'
-                }
-              }} variant="body2">
-                criado em: {new Date(task.createdAt).toLocaleDateString('pt')}
+                maxHeight: '50px',
+                // overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }} component="div">
+                <span
+                  style={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >{task.name}</span>
+                <div className={styles.task_actions}>
+                  <button
+                    className={styles.edit}
+                    type='button'
+                    onClick={() => openEditTask(task)}
+                  >
+                    <Edit sx={{
+                      color: '#7C7C7C',
+                      fontSize: '1em'
+                    }} />
+                  </button>
+                  <button
+                    className={styles.delete}
+                    type='button'
+                    onClick={() => openDeleteTask(task)}
+                  >
+                    <Delete sx={{
+                      color: '#7C7C7C',
+                      fontSize: '1em'
+                    }} />
+                  </button>
+                </div>
               </Typography>
-              <span 
-                title={`${task.User.name.split(' ')[0]} ${task.User.lastName}`}
-                className={styles.owner_span}>
-                <Avatar {...stringAvatar(`${task.User.name.split(' ')[0]} ${task.User.lastName}`)} />
-              </span>
-            </div>
 
-          </div>
-
-        ))
-          : <>
-
-            <div className={styles.board_item}>
               <Typography sx={{
-                display: 'flex',
-                color: '#756966',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '10px',
-                backgroundColor: '#FFF',
-                borderRadius: '8px',
-                mb: 1.5
-              }} color="text.secondary">
-                Não há tarefas em {title}
+                mb: 1.5,
+                flexGrow: 0,
+                maxHeight: '220px',
+                overflowY: 'auto',
+                textOverflow: 'ellipsis'
+              }} color="#756966">
+                {task.description}
               </Typography>
+
+              <div className={styles.card_footer}>
+                <Typography sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#043434',
+                  backgroundColor: '#058B8A4D',
+                  width: 'max-content',
+                  padding: '5px 10px',
+                  borderRadius: '8px',
+                  fontSize: '0.9em',
+                  fontWeight: 600,
+                  'p': {
+                    height: 'min-content'
+                  }
+                }} variant="body2">
+                  criado em: {new Date(task.createdAt).toLocaleDateString('pt')}
+                </Typography>
+                <span
+                  title={`${task.User.name.split(' ')[0]} ${task.User.lastName}`}
+                  className={styles.owner_span}>
+                  <Avatar {...stringAvatar(`${task.User.name.split(' ')[0]} ${task.User.lastName}`)} />
+                </span>
+              </div>
+
             </div>
 
-          </>
+          ))
+            : <>
+
+              <div className={styles.board_item}>
+                <Typography sx={{
+                  display: 'flex',
+                  color: '#756966',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '10px',
+                  backgroundColor: '#FFF',
+                  borderRadius: '8px',
+                  mb: 1.5
+                }} color="text.secondary">
+                  Não há tarefas em {title}
+                </Typography>
+              </div>
+
+            </>
 
         }
 

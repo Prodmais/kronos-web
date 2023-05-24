@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
 import { ProjectsService } from '../../services/projects-service';
 
-export default function ProjectForm({ onNextAction, onBackAction }) {
+export default function ProjectForm({ onNextAction, onBackAction, setLoading }) {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -15,7 +15,15 @@ export default function ProjectForm({ onNextAction, onBackAction }) {
     const handleSubimt = (event) => {
         event.preventDefault();
 
+        if (!name) {
+            enqueueSnackbar('Campo nome é obrigatório!', {
+                variant: 'error'
+            });
+            return false;
+        }
+
         setSubmit(true);
+        setLoading(true);
 
         projectService.createProject({
             title: name,
@@ -24,12 +32,14 @@ export default function ProjectForm({ onNextAction, onBackAction }) {
             enqueueSnackbar('Projeto criado com sucesso!', {
                 variant: 'success'
             });
+
             onNextAction();
         }).catch(error => {
             enqueueSnackbar('Falha ao criar o projeto!', {
                 variant: 'error'
             });
         })
+        .finally(() => setLoading(false))
     }
 
     return (

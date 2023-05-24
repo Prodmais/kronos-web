@@ -71,21 +71,24 @@ const Boards = () => {
 
   function createTask(task) {
 
+    setIsLoadingActionTask(true);
+
     tasksService.createTaskByProject(task)
       .then(res => {
-        setOpenCreateTask(false);
         enqueueSnackbar("Tarefa criada com sucesso!", {
           variant: 'success'
         })
-        setReloadBoards(!reloadBoards);
       })
       .catch(error => {
         console.error(error)
         enqueueSnackbar("Houve um error ao criar a tarefa!", {
           variant: 'error'
         });
-        setOpenCreateTask(false);
+      })
+      .finally(() => {
         setReloadBoards(!reloadBoards);
+        setOpenCreateTask(false);
+        setIsLoadingActionTask(false);
       })
   }
 
@@ -257,11 +260,27 @@ const Boards = () => {
                   justifyContent: 'center',
                 }}
               >
-                <TaskForm
-                  boards={boards}
-                  users={project.UsersIntegrated}
-                  handleSubmit={createTask}
-                />
+                {
+                  isLoadingActionTask ?
+                    <Box sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%',
+                      height: '100%',
+                      background: 'transparent',
+                    }}>
+                      <CircularProgress sx={{
+                        color: 'var(--main-color)',
+                      }} />
+                    </Box>
+                    :
+                    <TaskForm
+                      boards={boards}
+                      users={project.UsersIntegrated}
+                      handleSubmit={createTask}
+                    />
+                }
               </DialogContent>
             </Dialog>
 

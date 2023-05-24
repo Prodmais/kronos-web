@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, CircularProgress, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 import styles from "./task-form.module.css";
 import { enqueueSnackbar } from "notistack";
@@ -19,7 +19,6 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
   });
   const [isValidEndDate, setIsValidEndDate] = useState(true);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [endDate, setEndDate] = useState(new Date());
 
   function onSubmit(event) {
     event.preventDefault();
@@ -164,7 +163,9 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
               </Select>
             </FormControl>
 
-            <button type="submit" className={styles.submitBtn}><p>{buttonText}</p></button>
+            <button type="submit" className={styles.submitBtn}>
+              <p>{buttonText}</p>              
+            </button>
           </form>
         </div>
       </div>
