@@ -15,7 +15,7 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
     description: '',
     endDate: new Date(),
     boardId: boards[0].id,
-    ownerId: users[0]?.id ?? 0,
+    ownerId: users[0]?.userId ?? 0,
   });
   const [isValidEndDate, setIsValidEndDate] = useState(true);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -151,12 +151,12 @@ const TaskForm = ({ title="CRIE SUA ATIVIDADE", buttonText="Criar atividade", bo
                 labelId="userLabel"
                 id="demo-simple-select"
                 value={task.ownerId}
-                label="Quadro"
+                label="Atribuir à"
                 onChange={(e) => handleChange(e, 'ownerId')}
               >
                 {
                   users.length ? users.map(user => (
-                    <MenuItem key={user.id} value={user.id}>{user.Users.name}</MenuItem>
+                    <MenuItem key={user.id} value={user.userId}>{user.Users.name}</MenuItem>
                   ))
                     : null
                 }

@@ -127,7 +127,7 @@ const Login = () => {
           </label>
 
           <div className={styles.ForgetPassword}>
-            <Link to="forgetpassword">Esqueceu sua senha?</Link>
+            <Link to="/forgetpassword">Esqueceu sua senha?</Link>
           </div>
 
           <div>

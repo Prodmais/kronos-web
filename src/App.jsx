@@ -14,6 +14,7 @@ import Boards from './pages/boards';
 import Login from './pages/login';
 import Main from './pages/main';
 import Members from './pages/members';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
             <Route path='' element={<Navigate to='auth' />} />
             <Route path='auth' element={<Login />} />
             <Route path='signup' element={<CreateUser />} />
-
+            <Route path='forgetpassword' element={<ResetPassword />} />
           </Route>
 
           <Route path='' element={<PrivateGuardRoute />}>
